@@ -11,18 +11,16 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('buyers', function (Blueprint $table) {
-            $table->id(); // Auto-incrementing primary key
+            $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade'); // FK to products
-            $table->string('name'); // Buyer's name
-            //email
-            $table->string('email')->unique(); // Buyer's email
-            $table->string('phone_number')->unique(); // Buyer's phone number
-            //password
-            $table->string('password'); // Buyer's password
-            $table->text('review')->nullable(); // Buyer's review
-            $table->boolean('add_to_cart')->default(false); // If added to cart
-            $table->boolean('add_to_wishlist')->default(false); // If added to wishlist
-            $table->timestamps(); // Created_at & Updated_at
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('phone_number')->unique();
+            $table->string('password');
+            $table->text('review')->nullable();
+            $table->boolean('add_to_cart')->default(false);
+            $table->boolean('add_to_wishlist')->default(false);
+            $table->timestamps();
         });
     }
 
