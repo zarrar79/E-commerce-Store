@@ -5,7 +5,7 @@ export default function NavigationBar() {
             <div className="flex items-center w-[1170px] justify-between">
                 <div className="font-bold text-3xl">Exclusive</div>
                 <div>
-                    <ul className="flex space-x-6 gap-[48px]">
+                    <ul className="flex  gap-[48px]">
                         <li>
                             <a href="#" className="hover:text-gray-300">Home</a>
                         </li>
