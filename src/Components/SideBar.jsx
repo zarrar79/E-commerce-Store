@@ -1,6 +1,6 @@
 export default function SideBar() {
     return (
-        <div className="flex ml-[135px] mt-[40px] h-[344px]">
+        <div className="flex mt-[40px] h-[344px]">
             <ul className=" flex-col space-y-5 space-x-6 gap-[48px] w-[217px] pt-[5px]">
                 <li className="flex justify-between">
                     <a href="" className="hover:text-gray-300">Woman’s Fashion</a> <img src="/Right arrow.svg" alt="Right arrow" />

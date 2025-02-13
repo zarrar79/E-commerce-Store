@@ -1,5 +1,6 @@
 export default function NavigationBar() {
     return (
+        
         <div className="flex justify-center mt-[40px] h-[48px]">
             <div className="flex items-center w-[1170px] justify-between">
                 <div className="font-bold text-3xl">Exclusive</div>
