@@ -15,24 +15,38 @@ class VendorController extends Controller
 
 
     public function login(Request $request)
-{
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required'
-    ]);
-
-    if (Auth::guard('vendors')->attempt($credentials)) {
-        $request->session()->regenerate();
-        $vendor = Auth::guard('vendors')->user();
-        session(['vendor_id' => $vendor->id]);
+    {
+        // Check if vendor is already authenticated
+        if (auth('sanctum')->check()) {
+            return response()->json(['message' => 'Already logged in'], 200);
+        }
+    
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+    
+        // Find the vendor by email
+        $vendor = Vendor::where('email', $request->email)->first();
+    
+        // Check if vendor exists and password matches
+        if (!$vendor || !Hash::check($request->password, $vendor->password)) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+    
+        // Revoke old tokens if any (optional)
+        $vendor->tokens()->delete();
+    
+        // Create a Sanctum token
+        $token = $vendor->createToken('vendor_auth_token')->plainTextToken;
+    
         return response()->json([
             'message' => 'Login successful',
             'vendor' => $vendor,
-        ]);
+            'token' => $token
+        ], 200);
     }
-
-    return response()->json(['message' => 'Invalid credentials'], 401);
-}
+    
 
     /**
      * Create a new vendor.
@@ -68,34 +82,21 @@ class VendorController extends Controller
      */
     public function show()
 {
-    $vendor = auth()->user(); // Get the authenticated vendor
+    $vendor = $request->vendor->id;
 
-    if (!$vendor) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Unauthorized. Please log in.'
-        ], 401);
-    }
-
-    $vendorWithProducts = Vendor::with('products')->find($vendor->id);
+    $vendorWithProducts = Vendor::with('products')->find($vendor);
 
     return response()->json([
         'success' => true,
+        'show' => true,
         'vendor' => $vendorWithProducts
     ]);
 }
 
 public function addProduct(Request $request)
 {
-    $vendorId = session('vendor_id');
-    if (!$vendorId) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Unauthorized access. Please log in.',
-        ], 401);
-    }
+    $vendor = $request->vendor;
 
-    // Validate the request data
     $request->validate([
         'name' => 'required|string|max:255',
         'rating' => 'numeric|min:0|max:5',
@@ -123,7 +124,7 @@ public function addProduct(Request $request)
         'new_arrival' => $request->new_arrival,
         'category' => $request->category,
         'image' => $request->image ? $request->file('image')->store('products', 'public') : null,
-        'vendor_id' => $vendorId
+        'vendor_id' => $vendor->id // ✅ Assigning vendor ID from token auth
     ]);
     
     $product->save();
@@ -134,4 +135,44 @@ public function addProduct(Request $request)
         'product' => $product
     ], 201);
 }
+
+
+public function logout(Request $request)
+{
+    // Revoke the current user's token
+    $request->user()->currentAccessToken()->delete();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Logged out successfully!',
+    ], 200);
+}
+
+
+public function deleteProduct(Request $request,$id)
+{
+    // Get the authenticated vendor
+    $vendor = $request->vendor;
+
+    // First, find the product by ID
+    $product = Product::find($id);
+    
+    // Check if the product exists and belongs to the authenticated vendor
+    if (!$product || $product->vendor_id !== $vendor->id) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Product not found or you do not have permission to access this product.',
+        ], 404);
+    }
+
+    // Delete the product
+    $product->delete();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Product deleted successfully!',
+    ], 200);
+}
+  
+
 }

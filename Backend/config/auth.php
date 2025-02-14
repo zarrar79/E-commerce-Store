@@ -41,11 +41,11 @@ return [
             'provider' => 'users',
         ],
         'vendors' => [
-        'driver' => 'session',
+        'driver' => 'sanctum',
         'provider' => 'vendors',
     ],
     'api' => [
-        'driver' => 'session',
+        'driver' => 'sanctum',
         'provider' => 'vendors',
     ],
     ],
