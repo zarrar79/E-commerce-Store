@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'vendors' => [
+        'driver' => 'session',
+        'provider' => 'vendors',
+    ],
+    'api' => [
+        'driver' => 'session',
+        'provider' => 'vendors',
+    ],
     ],
 
     /*
@@ -60,9 +68,13 @@ return [
     */
 
     'providers' => [
+        'vendors' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Vendor::class, // Ensure you have a Vendor model
+    ],
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
