@@ -14,14 +14,25 @@ class VendorController extends Controller
 {
 
 
-  public function login(Request $request){
+    public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
 
-    $vendor = Vendor::where('email', $request->email)->first();
-    if($vendor && Hash::check($request->password, $vendor->password)){
-        return response()->json(['message' => 'Login Successfull']);
+    if (Auth::guard('vendors')->attempt($credentials)) {
+        $request->session()->regenerate();
+        $vendor = Auth::guard('vendors')->user();
+        session(['vendor_id' => $vendor->id]);
+        return response()->json([
+            'message' => 'Login successful',
+            'vendor' => $vendor,
+        ]);
     }
-    return response()->json(['message' => 'Invalid Credentials']);
-  }
+
+    return response()->json(['message' => 'Invalid credentials'], 401);
+}
 
     /**
      * Create a new vendor.
@@ -43,6 +54,7 @@ class VendorController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Vendor created successfully!',
+            'token' => auth()->attpt($vendor),
             'vendor' => [
                 'id' => $vendor->id,
                 'name' => $vendor->name,
@@ -75,12 +87,11 @@ class VendorController extends Controller
 
 public function addProduct(Request $request)
 {
-    // Ensure the user is authenticated
-    $vendor = auth()->user();
-    if (!$vendor) {
+    $vendorId = session('vendor_id');
+    if (!$vendorId) {
         return response()->json([
             'success' => false,
-            'message' => 'Unauthorized access. Please log in.'
+            'message' => 'Unauthorized access. Please log in.',
         ], 401);
     }
 
@@ -103,18 +114,16 @@ public function addProduct(Request $request)
     // Store the product
     $product = new Product([
         'name' => $request->name,
-        'rating' => $request->rating ?? 0,
         'price' => $request->price,
         'colors' => json_encode($request->colors),
         'size' => $request->size,
         'count' => $request->count,
-        'total_sales' => $request->total_sales ?? 0,
         'offer' => $request->offer,
         'on_sale' => $request->on_sale,
         'new_arrival' => $request->new_arrival,
         'category' => $request->category,
         'image' => $request->image ? $request->file('image')->store('products', 'public') : null,
-        'vendor_id' => $vendor->id
+        'vendor_id' => $vendorId
     ]);
     
     $product->save();
@@ -124,5 +133,5 @@ public function addProduct(Request $request)
         'message' => 'Product added successfully!',
         'product' => $product
     ], 201);
-} 
+}
 }

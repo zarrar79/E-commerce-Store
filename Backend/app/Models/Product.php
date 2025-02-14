@@ -21,6 +21,7 @@ class Product extends Model
         'new_arrival',
         'category',
         'image',
+        'vendor_id'
     ];
 
     protected $casts = [

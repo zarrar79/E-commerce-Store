@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
-class Vendor extends Model
+class Vendor extends Authenticatable
 {
     use HasFactory;
 
@@ -18,9 +20,23 @@ class Vendor extends Model
         'top_selling'
     ];
 
-    protected $hidden = [
-        'password',
+    protected $hidden = ['password'];
+
+    protected $casts = [
+        'total_sales' => 'integer',
+        'total_profit' => 'decimal:2', // Ensures proper decimal formatting
+        'top_selling' => 'integer'
     ];
+
+    /**
+     * Mutator to automatically hash passwords
+     */
+    protected function password(): Attribute
+    {
+        return Attribute::make(
+            set: fn($value) => bcrypt($value),
+        );
+    }
 
     /**
      * Get the vendor's products.
@@ -35,6 +51,6 @@ class Vendor extends Model
      */
     public function topSellingProduct()
     {
-        return $this->belongsTo(Product::class, 'top_selling');
+        return $this->belongsTo(Product::class, 'top_selling')->withDefault();
     }
 }
