@@ -8,7 +8,7 @@ Route::prefix('vendor')->group(function (){
     Route::post('/register', [VendorController::class, 'store']);
     Route::post('/login', [VendorController::class, 'login']);
 
-    Route::middleware(['auth:sanctum','vendor.auth'])->group(function () {
+    Route::middleware(['vendor.auth'])->group(function () {
         Route::post('/addProduct', [VendorController::class, 'addProduct']);
         Route::post('/logout', [VendorController::class, 'logout']);
         Route::post('/deleteProduct/{id}', [VendorController::class, 'deleteProduct']);
