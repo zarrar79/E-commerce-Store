@@ -177,18 +177,6 @@ public function addProduct(Request $request)
 }
 
 
-public function logout(Request $request)
-{
-    // Revoke the current user's token
-    $request->vendor->currentAccessToken()->delete();
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Logged out successfully!',
-    ], 200);
-}
-
-
 public function deleteProduct(Request $request,$id)
 {
     // Get the authenticated vendor
