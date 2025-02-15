@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './SlideShow.css'; // Import the CSS file for styling
 
-export default function SlideShow () {
+export default function SlideShow ({prop}) {
   const [i, setI] = useState(1); // Track the current index
   const itemWidth = 892; // You can adjust this based on your item width
   const numItems = 5; // Number of items that should be visible
@@ -22,6 +22,7 @@ export default function SlideShow () {
     }
   };
 
+
   useEffect(() => {
     const interval = setInterval(() => {
       moveSlider('next');
@@ -29,9 +30,10 @@ export default function SlideShow () {
     return () => clearInterval(interval); 
   }, [i]);
 
+
   return (
-    <div className='Container flex item-end mt-[40px] ml-[55px]'>
-      <div className="slider">
+    <div className='' >
+      <div className="slider" style={{ marginTop: prop.marginTop, marginLeft: prop.marginLeft }}>
         <div
           className="slider-inner"
           style={{
