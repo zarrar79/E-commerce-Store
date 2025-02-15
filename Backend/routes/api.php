@@ -9,11 +9,13 @@ Route::prefix('vendor')->group(function (){
     Route::post('/login', [VendorController::class, 'login']);
 
     Route::middleware(['vendor.auth'])->group(function () {
+        Route::post('/', [VendorController::class, 'show']);
         Route::post('/addProduct', [VendorController::class, 'addProduct']);
         Route::post('/logout', [VendorController::class, 'logout']);
         Route::post('/deleteProduct/{id}', [VendorController::class, 'deleteProduct']);
-        Route::post('/show', [VendorController::class, 'show']);
-        // Route::post('/editProduct', [VendorController::class, 'editProduct']);
+        Route::get('/editProduct/{id}', [VendorController::class, 'getProduct']);
+        Route::put('/updateProduct/{id}', [VendorController::class, 'updateProduct']);
+        Route::get('/dashboard', [VendorController::class, 'dashboard']);
     });
 });
 

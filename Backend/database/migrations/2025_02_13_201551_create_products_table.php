@@ -14,7 +14,8 @@ return new class extends Migration {
             $table->id(); // Auto-incrementing primary key
             $table->string('name'); // Product name
             $table->decimal('rating', 2, 1)->default(0); // Rating (e.g., 4.5)
-            $table->decimal('price', 10, 2); // Product price
+            $table->decimal('price', 10, 2); // Selling price
+            $table->decimal('cost_price', 10, 2); // Cost price (new column for profit calculation)
             $table->json('colors')->nullable(); // Colors (stored as JSON array)
             $table->string('size')->nullable(); // Product size
             $table->integer('count'); // Available stock count

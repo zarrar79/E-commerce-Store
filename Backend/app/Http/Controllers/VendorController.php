@@ -12,7 +12,47 @@ use App\Models\Product;
 
 class VendorController extends Controller
 {
+    public function dashboard(Request $request) {
+        $vendor = Vendor::with(['products'])->find($request->vendor->id);
+    
+        if (!$vendor) {
+            return response()->json(['message' => 'Vendor not found'], 404);
+        }
+    
+        $totalSales = 0;
+        $totalProfit = 0;
+        $productSales = [];
+    
+        foreach ($vendor->products as $product) {
+            // Get total quantity sold for this product
+            $salesCount = $product->total_sales;
+            $productSales[$product->id] = $salesCount;
+    
+            // Calculate total sales
+            $totalSales += $salesCount * $product->price;
+    
+            // Calculate total profit (assuming cost_price exists)
+            $profit = $salesCount * ($product->price - $product->cost_price);
+            $totalProfit += $profit;
+        }
 
+        arsort($productSales);
+    
+        // Get top 5 selling products
+        $topSellingProducts = collect($vendor->products)
+            ->filter(fn($product) => isset($productSales[$product->id]))
+            ->sortByDesc(fn($product) => $productSales[$product->id])
+            ->take(5)
+            ->values();
+    
+        return response()->json([
+            'total_sales' => $totalSales,
+            'total_profit' => $totalProfit,
+            'top_selling_products' => $topSellingProducts,
+            'productSales' => $productSales,
+        ]);
+    }
+    
 
     public function login(Request $request)
     {
@@ -173,6 +213,71 @@ public function deleteProduct(Request $request,$id)
         'message' => 'Product deleted successfully!',
     ], 200);
 }
+
+public function getProduct(Request $request, $id){
+    $product = Product::where('id', $id)
+                      ->where('vendor_id', $request->vendor->id)
+                      ->first(); // Get a single record
+
+    if (!$product) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Product not found or does not belong to this vendor'
+        ], 404);
+    }
+
+    return response()->json([
+        'success' => true,
+        'product' => $product
+    ]);
+}
+
+public function updateProduct(Request $request, $id)
+{
+    // Validate input
+    $request->validate([
+        'name' => 'sometimes|string|max:255',
+        'price' => 'sometimes|numeric|min:0',
+        'colors' => 'sometimes|array',
+        'size' => 'sometimes|string|nullable',
+        'count' => 'sometimes|integer|min:0',
+        'offer' => 'sometimes|numeric|min:0',
+        'on_sale' => 'sometimes|boolean',
+        'new_arrival' => 'sometimes|boolean',
+        'category' => 'sometimes|string|max:255',
+        'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    // Find product and ensure it belongs to the vendor
+    $product = Product::where('id', $id)
+                      ->where('vendor_id', $request->vendor->id)
+                      ->first();
+
+    if (!$product) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Product not found or does not belong to this vendor'
+        ], 404);
+    }
+
+    // Handle optional image upload
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('product_images', 'public');
+        $product->image = $imagePath;
+    }
+
+    // Update product details
+    $product->update($request->only([
+        'name', 'price', 'colors', 'size', 'count', 'offer', 'on_sale', 'new_arrival', 'category'
+    ]));
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Product updated successfully',
+        'product' => $product
+    ]);
+}
+
   
 
 }
