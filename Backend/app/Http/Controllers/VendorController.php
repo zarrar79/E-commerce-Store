@@ -17,10 +17,10 @@ class VendorController extends Controller
     public function login(Request $request)
     {
         // Check if vendor is already authenticated
-        if (auth('sanctum')->check()) {
+        if (auth('sanctum')->user()){
             return response()->json(['message' => 'Already logged in'], 200);
-        }
-    
+        }        
+
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -43,7 +43,7 @@ class VendorController extends Controller
         return response()->json([
             'message' => 'Login successful',
             'vendor' => $vendor,
-            'token' => $token
+            'token' => $token, 
         ], 200);
     }
     
@@ -80,7 +80,7 @@ class VendorController extends Controller
     /**
      * Get a single vendor by ID along with their products.
      */
-    public function show()
+    public function show(Request $request)
 {
     $vendor = $request->vendor->id;
 
@@ -140,7 +140,7 @@ public function addProduct(Request $request)
 public function logout(Request $request)
 {
     // Revoke the current user's token
-    $request->user()->currentAccessToken()->delete();
+    $request->vendor->currentAccessToken()->delete();
 
     return response()->json([
         'success' => true,

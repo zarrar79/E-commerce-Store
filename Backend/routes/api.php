@@ -4,11 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VendorController;
 
-Route::prefix('vendor')->group(function () {
+Route::prefix('vendor')->group(function (){
     Route::post('/register', [VendorController::class, 'store']);
     Route::post('/login', [VendorController::class, 'login']);
 
-    Route::middleware(['auth:sanctum', 'vendor.auth'])->group(function () {
+    Route::middleware(['auth:sanctum','vendor.auth'])->group(function () {
         Route::post('/addProduct', [VendorController::class, 'addProduct']);
         Route::post('/logout', [VendorController::class, 'logout']);
         Route::post('/deleteProduct/{id}', [VendorController::class, 'deleteProduct']);

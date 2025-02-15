@@ -11,7 +11,7 @@ class AuthenticateVendor
     public function handle(Request $request, Closure $next)
 
     {
-        if (!auth('sanctum')->check()) {
+        if (!auth('sanctum')->check()){
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized access. Please log in.',
