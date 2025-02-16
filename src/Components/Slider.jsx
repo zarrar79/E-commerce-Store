@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header_with_button from './Header_with_button';
+import Title from './Title';
 
 
 export default function Slider({ prop }) {
@@ -48,11 +48,21 @@ export default function Slider({ prop }) {
 
     return (
 
-        <div className={`space-y-${prop.spacing}`} style={{width: prop.containerWidth, marginLeft: prop.marginLeft, marginTop: prop.marginTop}}>
+        <div className='flex flex-col border border-red-500' style={{ rowGap: prop.spacing, width: prop.containerWidth, marginLeft: prop.marginLeft, marginTop: prop.marginTop }}>
+
+
+
 
             {prop.isShowButton &&
-                <div className='flex justify-end'>
-                    <div className='max-w-40 mr-10 border border-green-500'>
+                <div className='flex justify-between'>
+                    <Title
+                        prop={{
+                            title1: prop.title1,
+                            title2: prop.title2,
+
+                        }}
+                    />
+                    <div className='mt-[40px] max-w-40 mr-10 border border-green-500'>
                         <button className='p-3 size-12 bg-slate-200 rounded-full' onClick={() => moveSlider('prev')}>
                             <img src="./icons_arrow.svg" alt="" />
                         </button>
@@ -63,23 +73,27 @@ export default function Slider({ prop }) {
                 </div>}
             <div className="border border-red-500 overflow-hidden" style={{ width: prop.width }}>
                 <div
-                    className="flex transition-all duration-500 ease-in-out"
+                    className=" flex transition-all duration-500 ease-in-out "
                     style={{
                         transform: `translateX(-${(i - 1) * prop.itemWidth}px)`,
                         gap: prop.gapbetween,
                     }}
                 >
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
-                    <div style={itemStyles}><img src={prop.image} alt="" /></div>
+
+                    {prop.isComponent ? prop.component : <div className='flex'>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                        <div style={itemStyles}><img src={prop.image} alt="" /></div>
+                    </div>
+                    }
                 </div>
             </div>
         </div>

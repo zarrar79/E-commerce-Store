@@ -1,7 +1,7 @@
 
-export default function Header_with_button({ prop }) {
+export default function Title({ prop }) {
     return (
-        <div className='flex justify-between border border-red-500'>
+        <div className='max-w-80 justify-between border border-red-500'>
 
             <div className="flex flex-col max-w-96 border border-green-500 space-y-6">
                 {/* Today's Label */}
@@ -14,6 +14,7 @@ export default function Header_with_button({ prop }) {
                     <h2 className="text-2xl mt-auto font-bold">{prop.title2}</h2>
                 </div>
             </div>
+            
         </div>
     )
 }
