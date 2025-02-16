@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ProductController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -27,4 +28,5 @@ Route::prefix('vendor')->group(function (){
         Route::post('/addToWishlist', [WishlistController::class, 'store']);
         Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy']);
     });
+    Route::get('/', [ProductController::class, 'index']);
 
