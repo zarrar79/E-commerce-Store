@@ -19,7 +19,7 @@ class AuthenticateVendor
         }
 
         // Attach the authenticated vendor to the request
-        $request->merge(['vendor' => auth('sanctum')->user()]);
+        $request->merge(['user' => auth('sanctum')->user()]);
 
         return $next($request);
     }

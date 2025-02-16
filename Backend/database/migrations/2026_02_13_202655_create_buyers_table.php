@@ -10,16 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('buyers', function (Blueprint $table) {
+        Schema::create('buyer', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade'); // FK to products
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone_number')->unique();
+            $table->string('phone_number')->nullable()->unique();
             $table->string('password');
-            $table->text('review')->nullable();
-            $table->boolean('add_to_cart')->default(false);
-            $table->boolean('add_to_wishlist')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('buyers');
+        Schema::dropIfExists('buyer');
     }
 };

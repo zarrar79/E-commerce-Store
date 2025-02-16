@@ -13,7 +13,7 @@ use App\Models\Product;
 class VendorController extends Controller
 {
     public function dashboard(Request $request) {
-        $vendor = Vendor::with(['products'])->find($request->vendor->id);
+        $vendor = Vendor::with(['products'])->find($request->user->id);
     
         if (!$vendor) {
             return response()->json(['message' => 'Vendor not found'], 404);
@@ -52,90 +52,10 @@ class VendorController extends Controller
             'productSales' => $productSales,
         ]);
     }
-    
-
-    public function login(Request $request)
-    {
-        // Check if vendor is already authenticated
-        if (auth('sanctum')->user()){
-            return response()->json(['message' => 'Already logged in'], 200);
-        }        
-
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-    
-        // Find the vendor by email
-        $vendor = Vendor::where('email', $request->email)->first();
-    
-        // Check if vendor exists and password matches
-        if (!$vendor || !Hash::check($request->password, $vendor->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
-        }
-    
-        // Revoke old tokens if any (optional)
-        $vendor->tokens()->delete();
-    
-        // Create a Sanctum token
-        $token = $vendor->createToken('vendor_auth_token')->plainTextToken;
-    
-        return response()->json([
-            'message' => 'Login successful',
-            'vendor' => $vendor,
-            'token' => $token, 
-        ], 200);
-    }
-    
-
-    /**
-     * Create a new vendor.
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:vendors,email',
-            'password' => 'required|string|min:6',
-        ]);
-
-        $vendor = Vendor::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Vendor created successfully!',
-            'token' => auth()->attpt($vendor),
-            'vendor' => [
-                'id' => $vendor->id,
-                'name' => $vendor->name,
-                'email' => $vendor->email,
-            ]
-        ], 201);
-    }
-
-    /**
-     * Get a single vendor by ID along with their products.
-     */
-    public function show(Request $request)
-{
-    $vendor = $request->vendor->id;
-
-    $vendorWithProducts = Vendor::with('products')->find($vendor);
-
-    return response()->json([
-        'success' => true,
-        'show' => true,
-        'vendor' => $vendorWithProducts
-    ]);
-}
 
 public function addProduct(Request $request)
 {
-    $vendor = $request->vendor;
+    $vendor = $request->user;
 
     $request->validate([
         'name' => 'required|string|max:255',
@@ -180,7 +100,7 @@ public function addProduct(Request $request)
 public function deleteProduct(Request $request,$id)
 {
     // Get the authenticated vendor
-    $vendor = $request->vendor;
+    $vendor = $request->user;
 
     // First, find the product by ID
     $product = Product::find($id);
@@ -204,7 +124,7 @@ public function deleteProduct(Request $request,$id)
 
 public function getProduct(Request $request, $id){
     $product = Product::where('id', $id)
-                      ->where('vendor_id', $request->vendor->id)
+                      ->where('vendor_id', $request->user->id)
                       ->first(); // Get a single record
 
     if (!$product) {
@@ -238,7 +158,7 @@ public function updateProduct(Request $request, $id)
 
     // Find product and ensure it belongs to the vendor
     $product = Product::where('id', $id)
-                      ->where('vendor_id', $request->vendor->id)
+                      ->where('vendor_id', $request->user->id)
                       ->first();
 
     if (!$product) {

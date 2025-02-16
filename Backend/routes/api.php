@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\WishlistController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -21,6 +22,9 @@ Route::prefix('vendor')->group(function (){
     });
 });
 
-Route::prefix('buyer')->group(function (){
-    
-});
+    Route::middleware(['vendor.auth'])->group(function () {
+        Route::get('/wishlist', [WishlistController::class, 'index']);
+        Route::post('/addToWishlist', [WishlistController::class, 'store']);
+        Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy']);
+    });
+

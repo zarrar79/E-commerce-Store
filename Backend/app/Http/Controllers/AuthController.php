@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Vendor;
-use App\Models\User;
+use App\Models\Buyer;
 use Illuminate\Routing\Controller;
 
 
@@ -28,7 +28,7 @@ class AuthController extends Controller
             'is_vendor' => 'required|boolean'
         ]);
 
-        $model = $request->is_vendor ? Vendor::class : User::class;
+        $model = $request->is_vendor ? Vendor::class : Buyer::class;
         $user = $model::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -50,17 +50,23 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users,email|unique:vendors,email',
+            'email' => 'required|string|email|unique:buyer,email|unique:vendors,email',
             'password' => 'required|string|min:6',
             'is_vendor' => 'required|boolean'
         ]);
 
-        $model = $request->is_vendor ? Vendor::class : User::class;
-        $user = $model::create([
+        $model = $request->is_vendor ? Vendor::class : Buyer::class;
+        $userData = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+            'password' => Hash::make($request->password),
+        ];
+        
+        if ($request->is_vendor && $request->phone_number) {
+            $userData['phone_number'] = $request->phone_number;
+        }
+        
+        $user = $model::create($userData);
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
