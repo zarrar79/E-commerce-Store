@@ -6,6 +6,7 @@ import Slider from '../Components/Slider'
 import Title from '../Components/Title.jsx'
 import Categories from '../Components/Categories.jsx'
 import Products_Button from '../Components/Products_Button.jsx'
+import Timer from '../Components/Timer.jsx'
 
 
 export default function HomePage() {
@@ -156,7 +157,7 @@ export default function HomePage() {
             alt: "Gamepad"
         },
         {
-            title: "HAVIT HV-G92 Gamepad",
+            title: "HAVIT ",
             newprice: "$120",
             oldprice: "$160",
             discount: "-40%",
@@ -164,7 +165,7 @@ export default function HomePage() {
             alt: "Gamepad"
         },
         {
-            title: "HAVIT HV-G92 Gamepad",
+            title: "HV-G92 Gamepad",
             newprice: "$120",
             oldprice: "$160",
             discount: "-40%",
@@ -236,6 +237,51 @@ export default function HomePage() {
             alt: "Gamepad"
         }
     ]
+
+
+
+    const ourProduct2 = [
+        {
+            title: "HAVIT HV-G92 Gamepad",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+            alt: "Gamepad"
+        },
+        {
+            title: "arra",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+            alt: "Gamepad"
+        },
+        {
+            title: "HAVIT HV-G92 Gamepad",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+            alt: "Gamepad"
+        },
+        {
+            title: "HAVIT HV-G92 Gamepad",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+            alt: "Gamepad"
+        },
+        {
+            title: "HAVIT ",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+            alt: "Gamepad"
+        }]
+
 
 
     return (
@@ -363,9 +409,9 @@ export default function HomePage() {
                             <div className=''>
                                 <Slider
                                     prop={{
-                                        itemWidth: 305,
+                                        itemWidth: 310,
                                         itemheight: 350,
-                                        numItems: 3,
+                                        numItems: 6,
                                         showItems: 4,
                                         image: "",
                                         spacing: 16,
@@ -374,27 +420,32 @@ export default function HomePage() {
                                         isMove: false,
                                         isShowButton: true,
                                         isComponent: true,
-                                        component: <>
-                                            {ourProduct.map((data) => (
+                                        component: <div className='flex flex-col space-y-8'>
+                                            <div className="flex gap-14">
+                                                {ourProduct.map((data) => (
+                                                    <ProductCard prop={data} />
+                                                ))}
+                                            </div>
+                                            <div className="flex gap-14">
+                                                {ourProduct2.map((data) => (
+                                                    <ProductCard prop={data} />
+                                                ))}
+                                            </div>
+                                        </div>,
 
-                                                <div className='flex border border-red-700'><ProductCard prop={data} /></div>
-
-                                            ))}
-                                        </>,
                                         title1: "Our Product's",
                                         title2: "Explore Our Product's",
-                                        container: 2,
-                                        gapbetween: 90
+                                        gapbetween: 60
                                     }}
                                 />
 
                             </div>
                         </div>
                     </div>
+
+                    <Timer prop={{ days: 10, hours: 10, minutes: 10, seconds: 10, component: 2 }} />
                 </div>
             </div>
-
-
         </>
     )
 }

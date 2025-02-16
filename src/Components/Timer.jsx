@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Timer() {
-
-    // Set the target time (e.g., 3 days from now)
-    const targetTime = new Date().getTime() + 3 * 24 * 60 * 60 * 1000;
+export default function Timer({ prop }) {
+    // Calculate the target time based on props
+    const targetTime = new Date().getTime() +
+        (prop.days * 24 * 60 * 60 * 1000) +
+        (prop.hours * 60 * 60 * 1000) +
+        (prop.minutes * 60 * 1000) +
+        (prop.seconds * 1000);
 
     const calculateTimeLeft = () => {
         const now = new Date().getTime();
         const difference = targetTime - now;
 
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        return { days, hours, minutes, seconds };
+        return {
+            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+            minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+            seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        };
     };
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
@@ -28,15 +31,27 @@ export default function Timer() {
     }, []);
 
     return (
-        <div className="flex items-center space-x-3">
-            {["Days", "Hours", "Minutes", "Seconds"].map((label, index) => (
-                <div key={index} className="flex flex-col items-center">
-                    <span className="text-xs text-gray-500">{label}</span>
-                    <span className="text-xl font-bold">
-                        {index === 0 ? timeLeft.days : index === 1 ? timeLeft.hours : index === 2 ? timeLeft.minutes : timeLeft.seconds}
-                    </span>
-                </div>
-            ))}
-        </div>
-    )
+        <>
+            {prop.component === 1 ? <div className="flex items-center space-x-3">
+                {["Days", "Hours", "Minutes", "Seconds"].map((label, index) => (
+                    <div key={index} className="flex flex-col items-center">
+                        <span className="text-xs text-gray-500">{label}</span>
+                        <span className="text-xl font-bold">
+                            {index === 0 ? timeLeft.days : index === 1 ? timeLeft.hours : index === 2 ? timeLeft.minutes : timeLeft.seconds}
+                        </span>
+                    </div>
+                ))}
+            </div> : <div className="flex justify-center border border-blue-500 w-72 items-center space-x-3">
+                {["Days", "Hours", "Minutes", "Seconds"].map((label, index) => (
+                    <div key={index} className="flex flex-col items-center border border-radius border-black">
+                        
+                        <span className="text-xl font-bold border border-red-600">
+                            {index === 0 ? timeLeft.days : index === 1 ? timeLeft.hours : index === 2 ? timeLeft.minutes : timeLeft.seconds}
+                        </span>
+                        <span className="text-xs text-gray-500">{label}</span>
+                    </div>
+                ))}
+            </div>}
+        </>
+    );
 }

@@ -71,9 +71,9 @@ export default function Slider({ prop }) {
                         </button>
                     </div>
                 </div>}
-            <div className="border border-red-500 overflow-hidden" style={{ width: prop.width }}>
+            <div className="border overflow-hidden" style={{ width: prop.width }}>
                 <div
-                    className=" flex transition-all duration-500 ease-in-out "
+                    className=" flex border-black transition-all duration-500 ease-in-out "
                     style={{
                         transform: `translateX(-${(i - 1) * prop.itemWidth}px)`,
                         gap: prop.gapbetween,
