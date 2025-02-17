@@ -41,14 +41,15 @@ export default function Timer({ prop }) {
                         </span>
                     </div>
                 ))}
-            </div> : <div className="flex justify-center border border-blue-500 w-72 items-center space-x-3">
+            </div> : <div className="flex justify-between w-80 h-[70px]">
                 {["Days", "Hours", "Minutes", "Seconds"].map((label, index) => (
-                    <div key={index} className="flex flex-col items-center border border-radius border-black">
-                        
-                        <span className="text-xl font-bold border border-red-600">
+                    <div key={index} className="flex flex-col justify-center w-16 items-center rounded-full bg-white">
+
+                        <span className="text-sm font-bold">
                             {index === 0 ? timeLeft.days : index === 1 ? timeLeft.hours : index === 2 ? timeLeft.minutes : timeLeft.seconds}
                         </span>
-                        <span className="text-xs text-gray-500">{label}</span>
+                        <span className="text-sm flex justify-start text-gray-500">{label}</span>
+
                     </div>
                 ))}
             </div>}

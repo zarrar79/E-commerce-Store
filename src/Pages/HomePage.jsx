@@ -7,6 +7,11 @@ import Title from '../Components/Title.jsx'
 import Categories from '../Components/Categories.jsx'
 import Products_Button from '../Components/Products_Button.jsx'
 import Timer from '../Components/Timer.jsx'
+import Category from '../Components/Category.jsx'
+import NewArrivalHeader from '../Components/NewArrivalHeader.jsx'
+import { Description } from '@mui/icons-material'
+import NewArrivalComponent from '../Components/NewArrivalComponent.jsx'
+import BottomComponents from '../Components/BottomComponents.jsx'
 
 
 export default function HomePage() {
@@ -288,7 +293,7 @@ export default function HomePage() {
         <>
             <TopHeader />
             <div className='flex justify-center'>
-                <div className='flex w-[1440px] justify-center flex-col border border-red-500 '>
+                <div className='flex gap-24 w-[1440px] justify-center flex-col border border-red-500 '>
 
                     <NavigationBar />
                     <div className='flex justify-center'>
@@ -301,7 +306,7 @@ export default function HomePage() {
                                 numItems: 5,
                                 showItems: 1,
                                 image: "/Slide.svg",
-                                marginTop: "40px",
+                                marginTop: "0px",
                                 marginLeft: "55px",
                                 width: "892px",
                                 gapbetween: "0px",
@@ -402,11 +407,19 @@ export default function HomePage() {
                     </div>
 
 
-                    {/* Explore Our Product's */}
+                    {/* Category */}
                     <div className=' border border-blue-500'>
                         <div className=' border flex justify-center border-red-500'>
+                            <Category prop={{ component: <Timer prop={{ days: 10, hours: 10, minutes: 10, seconds: 10, component: 2 }} /> }} />
+                        </div>
+                    </div>
 
-                            <div className=''>
+
+                    {/* Explore Our Product's */}
+                    <div className='flex flex-col items-center border gap-10 border-blue-500'>
+                        <div className=' border flex justify-center border-red-500'>
+
+                            <div>
                                 <Slider
                                     prop={{
                                         itemWidth: 310,
@@ -438,12 +451,43 @@ export default function HomePage() {
                                         gapbetween: 60
                                     }}
                                 />
-
                             </div>
+                        </div>
+                        <button className='bg-[#DB4444] w-[234px] h-[56px] text-white'>View All Products</button>
+                    </div>
+
+
+
+                    {/* New Arrival */}
+                    <div className=' border border-blue-500'>
+                        <div className=' border flex justify-center border-red-500'>
+                            <NewArrivalComponent />
                         </div>
                     </div>
 
-                    <Timer prop={{ days: 10, hours: 10, minutes: 10, seconds: 10, component: 2 }} />
+
+                    {/* Bottom Components */}
+                    <div className='flex justify-center border border-blue-500'>
+                        <div className='flex justify-between border w-[943px] border-red-500'>
+                            <BottomComponents prop={{
+                                image: "./icon-delivery.svg",
+                                title: "FREE AND FAST DELIVERY",
+                                description: "Free delivery for all orders over $140",
+                            }} />
+                            <BottomComponents prop={{
+                                image: "./Icon-Customer service.svg",
+                                title: "24/7 CUSTOMER SERVICE",
+                                description: "Friendly 24/7 customer support",
+                            }} />
+                            <BottomComponents prop={{
+                                image: "./Icon-secure.svg",
+                                title: "MONEY BACK GUARANTEE",
+                                description: "We reurn money within 30 days",
+                            }} />
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </>
