@@ -1,10 +1,25 @@
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import React, { useState, useRef } from 'react';
+import { IconButton } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+
 export default function NavigationBar() {
+
+    const [isInputVisible, setInputVisible] = useState(true);
+    const inputRef = useRef(null);
+
+    const handleIconClick = () => {
+        setInputVisible(true); // Make input visible on icon click
+        inputRef.current?.focus(); // Focus on the input field to show the cursor
+    };
+
+
     return (
-        
+
         <div className="flex justify-center mt-[40px] h-[48px]">
             <div className="flex items-center w-[1170px] justify-between">
                 <div className="font-bold text-3xl">Exclusive</div>
-                <div>
+                <div className="">
                     <ul className="flex  gap-[48px]">
                         <li>
                             <a href="#" className="hover:text-gray-300">Home</a>
@@ -21,11 +36,30 @@ export default function NavigationBar() {
                     </ul>
                 </div>
 
-                <div className="flex gap-[24px]">
-                    <span className="text-gray-500">What are you looking for?</span>
-                    <img src="/Search.svg" alt="Search logo" />
-                    <img src="/Heart.svg" alt="Search logo" />
-                    <img src="/Cart.svg" alt="Search logo" />
+                <div className="flex justify-between items-center gap-[24px] w-[374px]">
+                    <div className="flex justify-center w-[243px] h-[38px] bg-gray-100 rounded-lg " style={{ display: 'flex', alignItems: 'center' }}>
+                        <input className="bg-gray-100 roun outline-none placeholder:text-sm"
+                            ref={inputRef}
+                            type="text"
+                            placeholder="What are you looking for?"
+                            style={{
+                                opacity: isInputVisible ? 1 : 0,
+                                visibility: isInputVisible ? 'visible' : 'hidden',
+                                transition: 'opacity 0.3s ease',
+                            }}
+                        />
+                        <IconButton onClick={handleIconClick}>
+                            <SearchIcon />
+                        </IconButton>
+                    </div>
+                    <div className="flex justify-between w-[95px]">
+                        <IconButton>
+                            <FavoriteBorderIcon className="text-sm" />
+                        </IconButton>
+                        <IconButton>
+                            <img src="/Cart.svg" alt="Cart logo" />
+                        </IconButton>
+                    </div>
                 </div>
             </div>
         </div>
