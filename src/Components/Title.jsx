@@ -1,9 +1,9 @@
 
 export default function Title({ prop }) {
     return (
-        <div className='max-w-80 justify-between border border-red-500'>
+        <div className='max-w-80 justify-between'>
 
-            <div className="flex flex-col max-w-96 border border-green-500 space-y-6">
+            <div className="flex flex-col max-w-96 space-y-6">
                 {/* Today's Label */}
                 <div className="flex items-center space-x-4">
                     <div className="w-3.5 h-6 bg-red-500 rounded"></div>

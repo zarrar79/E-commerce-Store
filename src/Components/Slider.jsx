@@ -48,7 +48,7 @@ export default function Slider({ prop }) {
 
     return (
 
-        <div className='flex flex-col border border-red-500' style={{ rowGap: prop.spacing, width: prop.containerWidth, marginLeft: prop.marginLeft, marginTop: prop.marginTop }}>
+        <div className='flex flex-col ' style={{ rowGap: prop.spacing, width: prop.containerWidth, marginLeft: prop.marginLeft, marginTop: prop.marginTop }}>
 
 
 
@@ -62,7 +62,7 @@ export default function Slider({ prop }) {
 
                         }}
                     />
-                    <div className='mt-[40px] max-w-40 mr-10 border border-green-500'>
+                    <div className='mt-[40px] max-w-40 mr-10'>
                         <button className='p-3 size-12 bg-slate-200 rounded-full' onClick={() => moveSlider('prev')}>
                             <img src="./icons_arrow.svg" alt="" />
                         </button>
@@ -73,7 +73,7 @@ export default function Slider({ prop }) {
                 </div>}
             <div className="border overflow-hidden" style={{ width: prop.width }}>
                 <div
-                    className=" flex border-black transition-all duration-500 ease-in-out "
+                    className=" flex transition-all duration-500 ease-in-out "
                     style={{
                         transform: `translateX(-${(i - 1) * prop.itemWidth}px)`,
                         gap: prop.gapbetween,

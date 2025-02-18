@@ -12,12 +12,45 @@ import NewArrivalHeader from '../Components/NewArrivalHeader.jsx'
 import { Description } from '@mui/icons-material'
 import NewArrivalComponent from '../Components/NewArrivalComponent.jsx'
 import BottomComponents from '../Components/BottomComponents.jsx'
+import Footer from '../Components/Footer.jsx'
 
 
 export default function HomePage() {
 
 
     const productData = [
+        {
+            title: "HAVIT HV-G92 Gamepad",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+            alt: "Gamepad"
+        },
+        {
+            title: "arra",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+            alt: "Gamepad"
+        },
+        {
+            title: "HAVIT HV-G92 Gamepad",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+            alt: "Gamepad"
+        },
+        {
+            title: "HAVIT HV-G92 Gamepad",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+            alt: "Gamepad"
+        },
         {
             title: "HAVIT HV-G92 Gamepad",
             newprice: "$120",
@@ -290,13 +323,15 @@ export default function HomePage() {
 
 
     return (
-        <>
-            <TopHeader />
+        <div>
+            <div>
+                <TopHeader />
+            </div>
             <div className='flex justify-center'>
-                <div className='flex gap-24 w-[1440px] justify-center flex-col border border-red-500 '>
+                <div className='flex gap-24 w-[1440px] justify-center flex-col'>
 
                     <NavigationBar />
-                    <div className='flex justify-center'>
+                    <div className='flex justify-center -mt-12'>
                         <SideBar />
                         <Slider
                             prop={{
@@ -319,8 +354,8 @@ export default function HomePage() {
 
 
                     {/* Flash Sales Box */}
-                    <div className=' border border-blue-500'>
-                        <div className='flex flex-end border border-red-500'>
+                    <div className=' '>
+                        <div className='flex flex-end'>
 
 
                             <div className='ml-auto'>
@@ -328,7 +363,7 @@ export default function HomePage() {
                                     prop={{
                                         itemWidth: 280,
                                         itemheight: 350,
-                                        numItems: 7,
+                                        numItems: 4,
                                         showItems: 5,
                                         image: "",
                                         spacing: 16,
@@ -354,8 +389,8 @@ export default function HomePage() {
 
                     {/* Browse By Category */}
 
-                    <div className=' border border-blue-500'>
-                        <div className=' border flex justify-center border-red-500'>
+                    <div className=''>
+                        <div className='flex justify-center '>
 
                             <div className=''>
                                 <Slider
@@ -387,8 +422,8 @@ export default function HomePage() {
 
                     {/* Best Selling Products */}
 
-                    <div className=' border border-blue-500'>
-                        <div className=' border flex justify-center border-red-500'>
+                    <div className=' '>
+                        <div className=' flex justify-center '>
                             <Products_Button prop={{
                                 component: <>{
                                     homePage_Product_Button.map((data) => (
@@ -408,16 +443,16 @@ export default function HomePage() {
 
 
                     {/* Category */}
-                    <div className=' border border-blue-500'>
-                        <div className=' border flex justify-center border-red-500'>
+                    <div className=' '>
+                        <div className=' flex justify-center '>
                             <Category prop={{ component: <Timer prop={{ days: 10, hours: 10, minutes: 10, seconds: 10, component: 2 }} /> }} />
                         </div>
                     </div>
 
 
                     {/* Explore Our Product's */}
-                    <div className='flex flex-col items-center border gap-10 border-blue-500'>
-                        <div className=' border flex justify-center border-red-500'>
+                    <div className='flex flex-col items-center gap-10 '>
+                        <div className='  flex justify-center '>
 
                             <div>
                                 <Slider
@@ -459,16 +494,16 @@ export default function HomePage() {
 
 
                     {/* New Arrival */}
-                    <div className=' border border-blue-500'>
-                        <div className=' border flex justify-center border-red-500'>
+                    <div className=' '>
+                        <div className=' flex justify-center '>
                             <NewArrivalComponent />
                         </div>
                     </div>
 
 
                     {/* Bottom Components */}
-                    <div className='flex justify-center border border-blue-500'>
-                        <div className='flex justify-between border w-[943px] border-red-500'>
+                    <div className='flex justify-center '>
+                        <div className='flex justify-between w-[943px]'>
                             <BottomComponents prop={{
                                 image: "./icon-delivery.svg",
                                 title: "FREE AND FAST DELIVERY",
@@ -490,6 +525,10 @@ export default function HomePage() {
 
                 </div>
             </div>
-        </>
+            <div className='mt-24'>
+                <Footer />
+            </div>
+
+        </div>
     )
 }
