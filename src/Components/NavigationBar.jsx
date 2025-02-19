@@ -36,8 +36,8 @@ export default function NavigationBar() {
                     </ul>
                 </div>
 
-                <div className="flex justify-between items-center gap-[24px] w-[374px]">
-                    <div className="flex justify-center w-[243px] h-[38px] bg-gray-100 rounded-lg " style={{ display: 'flex', alignItems: 'center' }}>
+                <div className="flex justify-between items-center w-[370px]">
+                    <div className="flex justify-center w-[240px] h-[38px] bg-gray-100 rounded-lg " style={{ display: 'flex', alignItems: 'center' }}>
                         <input className="bg-gray-100 roun outline-none placeholder:text-sm"
                             ref={inputRef}
                             type="text"
@@ -49,10 +49,10 @@ export default function NavigationBar() {
                             }}
                         />
                         <IconButton onClick={handleIconClick}>
-                            <SearchIcon />
+                            <SearchIcon className="-mr-4" />
                         </IconButton>
                     </div>
-                    <div className="flex justify-between w-[95px]">
+                    <div className="flex justify-between w-[100px]">
                         <IconButton>
                             <FavoriteBorderIcon className="text-sm" />
                         </IconButton>

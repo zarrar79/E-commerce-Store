@@ -59,6 +59,7 @@ export default function Slider({ prop }) {
                         prop={{
                             title1: prop.title1,
                             title2: prop.title2,
+                            showTimer: prop.showTimer
 
                         }}
                     />
