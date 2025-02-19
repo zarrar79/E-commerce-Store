@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\AuthController;
@@ -29,4 +30,5 @@ Route::prefix('vendor')->group(function (){
         Route::delete('/wishlist/{id}', [WishlistController::class, 'destroy']);
     });
     Route::get('/', [ProductController::class, 'index']);
+    Route::post('/send-email', [MailController::class, 'sendEmail']);
 
