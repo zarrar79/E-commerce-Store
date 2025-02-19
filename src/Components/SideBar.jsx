@@ -1,8 +1,8 @@
 export default function SideBar() {
     return (
         <div className="flex h-[344px]">
-            <ul className=" flex-col space-y-5 space-x-6 gap-[48px] w-[217px] pt-[5px]">
-                <li className="flex justify-between">
+            <ul className=" flex-col space-y-5 space-x-6 w-[217px] pt-[5px]">
+                <li className="flex justify-between w-48 ml-auto">
                     <a href="" className="hover:text-gray-300">Woman’s Fashion</a> <img src="/Right arrow.svg" alt="Right arrow" />
                 </li>
                 <li className="flex justify-between">

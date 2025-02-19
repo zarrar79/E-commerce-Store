@@ -32,27 +32,32 @@ export default function Timer({ prop }) {
 
     return (
         <>
-            {prop.component === 1 ? <div className="flex items-center space-x-3">
-                {["Days", "Hours", "Minutes", "Seconds"].map((label, index) => (
-                    <div key={index} className="flex flex-col items-center">
-                        <span className="text-xs text-gray-500">{label}</span>
-                        <span className="text-xl font-bold">
-                            {index === 0 ? timeLeft.days : index === 1 ? timeLeft.hours : index === 2 ? timeLeft.minutes : timeLeft.seconds}
-                        </span>
-                    </div>
-                ))}
-            </div> : <div className="flex justify-between w-80 h-[70px]">
-                {["Days", "Hours", "Minutes", "Seconds"].map((label, index) => (
-                    <div key={index} className="flex flex-col justify-center w-16 items-center rounded-full bg-white">
+            {prop.timerComponent === 1 ? (
+                <div className="flex items-center space-x-3">
+                    {["Days", "Hours", "Minutes", "Seconds"].map((label, index) => (
+                        <div key={index} className="flex flex-col items-center">
+                            <span className="text-xs text-gray-500">{label}</span>
+                            <span className="text-2xl font-extrabold">
+                                {index === 0 ? timeLeft.days : index === 1 ? timeLeft.hours : index === 2 ? timeLeft.minutes : timeLeft.seconds}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            ) : prop.timerComponent === 2 ? (
+                <div className="flex justify-between w-80 h-[70px]">
+                    {["Days", "Hours", "Minutes", "Seconds"].map((label, index) => (
+                        <div key={index} className="flex flex-col justify-center w-[70px] items-center rounded-full bg-white">
+                            <span className="text-sm font-bold">
+                                {index === 0 ? timeLeft.days : index === 1 ? timeLeft.hours : index === 2 ? timeLeft.minutes : timeLeft.seconds}
+                            </span>
+                            <span className="text-xs flex justify-start text-gray-500">{label}</span>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <div></div> 
+            )}
 
-                        <span className="text-sm font-bold">
-                            {index === 0 ? timeLeft.days : index === 1 ? timeLeft.hours : index === 2 ? timeLeft.minutes : timeLeft.seconds}
-                        </span>
-                        <span className="text-sm flex justify-start text-gray-500">{label}</span>
-
-                    </div>
-                ))}
-            </div>}
         </>
     );
 }

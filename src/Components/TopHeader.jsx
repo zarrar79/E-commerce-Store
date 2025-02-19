@@ -9,7 +9,7 @@ export default function TopHeader() {
                     <span className="font-bold cursor-pointer"> Shop Now</span>
                 </div>
 
-                <div className="text-right cursor-pointer">
+                <div className="flex justify-end gap-3 text-right cursor-pointer">
                     English <span className="inline-flex"><img src="/Down arrow.svg" alt="Down arrow image" /></span>
                 </div>
             </div>

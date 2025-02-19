@@ -327,204 +327,203 @@ export default function HomePage() {
             <div>
                 <TopHeader />
             </div>
-            <div className='flex justify-center'>
-                <div className='flex gap-24 w-[1440px] justify-center flex-col'>
+            
+            <div className='flex gap-20 justify-center flex-col'>
 
+                <div className=''>
                     <NavigationBar />
-                    <div className='flex justify-center -mt-12'>
-                        <SideBar />
-                        <Slider
-                            prop={{
-                                containerWidth: "892px",
-                                itemWidth: 892,
-                                itemheight: 344,
-                                numItems: 5,
-                                showItems: 1,
-                                image: "/Slide.svg",
-                                marginTop: "0px",
-                                marginLeft: "55px",
-                                width: "892px",
-                                gapbetween: "0px",
-                                isMove: true,
-                                isShowButton: false,
-                            }}
-                        />
+                </div>
+                <hr className='-mt-16' />
+                <div className='flex justify-center -mt-10'>
+                    <SideBar />
+                    <Slider
+                        prop={{
+                            containerWidth: "892px",
+                            itemWidth: 892,
+                            itemheight: 344,
+                            numItems: 5,
+                            showItems: 1,
+                            image: "/Slide.svg",
+                            marginTop: "0px",
+                            marginLeft: "55px",
+                            width: "892px",
+                            gapbetween: "0px",
+                            isMove: true,
+                            isShowButton: false,
+                        }}
+                    />
+                </div>
+
+
+                {/* Flash Sales */}
+                <div className='ml-auto mt-8 w-[1308px]'>
+                    <Slider
+                        prop={{
+                            itemWidth: 280,
+                            itemheight: 350,
+                            numItems: 4,
+                            showItems: 5,
+                            image: "",
+                            spacing: 52,
+                            width: "1308px",
+                            containerWidth: "1308px",
+                            isMove: false,
+                            isShowButton: true,
+                            isComponent: true,
+                            component: <div className='flex gap-[30px]'>
+                                {productData.map((data) => (
+                                    <ProductCard prop={data} />
+                                ))}
+                            </div>,
+                            title1: "Todays",
+                            title2: "Flash Sales",
+                            showTimer: 1
+                        }}
+                    />
+                </div>
+
+                <button className='bg-[#DB4444] w-[234px] h-[56px] text-white mx-auto'>View All Products</button>
+
+
+                <hr className='w-[1170px] mx-auto' />
+
+                {/* Browse By Category */}
+                <div className=''>
+                    <div className='flex justify-center '>
+
+                        <div className=''>
+                            <Slider
+                                prop={{
+                                    itemWidth: 200,
+                                    itemheight: 350,
+                                    numItems: 7,
+                                    showItems: 4,
+                                    image: "",
+                                    spacing: 52,
+                                    width: "1170px",
+                                    containerWidth: "1170px",
+                                    isMove: false,
+                                    isShowButton: true,
+                                    isComponent: true,
+                                    component: <div className='flex gap-[30px]'>
+                                        {categoriesData.map((data) => (
+                                            <Categories prop={data} />
+                                        ))}
+                                    </div>,
+                                    title1: "Categories",
+                                    title2: "Browse By Category",
+                                }}
+                            />
+                        </div>
                     </div>
+                </div>
+
+                <hr className='w-[1170px] mx-auto' />
+
+                {/* Best Selling Products */}
+
+                <div className=' '>
+                    <div className=' flex justify-center '>
+                        <Products_Button prop={{
+                            component: <>{
+                                homePage_Product_Button.map((data) => (
+                                    <ProductCard prop={data} />
+                                ))
+                            }</>,
+                            title1: "This Month",
+                            title2: "Best Selling Products",
+                            buttonContent: "View All",
+                            buttonColor: "rgba(219, 68, 68, 1)",
+                            textColor: "white",
+                            marginTop: "30px",
+                        }} />
+
+                    </div>
+                </div>
 
 
+                {/* Category */}
+                <div className='mt-8 '>
+                    <div className=' flex justify-center '>
+                        <Category prop={{ component: <Timer prop={{ days: 10, hours: 10, minutes: 10, seconds: 10, timerComponent: 2 }} /> }} />
+                    </div>
+                </div>
 
-                    {/* Flash Sales Box */}
-                    <div className=' '>
-                        <div className='flex flex-end'>
 
+                {/* Explore Our Product's */}
+                <div className='flex flex-col items-center gap-10 '>
+                    <div className='  flex justify-center '>
 
-                            <div className='ml-auto'>
-                                <Slider
-                                    prop={{
-                                        itemWidth: 280,
-                                        itemheight: 350,
-                                        numItems: 4,
-                                        showItems: 5,
-                                        image: "",
-                                        spacing: 16,
-                                        width: "1308px",
-                                        containerWidth: "1308px",
-                                        isMove: false,
-                                        isShowButton: true,
-                                        isComponent: true,
-                                        component: <div className='flex gap-[30px]'>
-                                            {productData.map((data) => (
+                        <div>
+                            <Slider
+                                prop={{
+                                    itemWidth: 310,
+                                    itemheight: 350,
+                                    numItems: 6,
+                                    showItems: 4,
+                                    image: "",
+                                    spacing: 52,
+                                    width: "1170px",
+                                    containerWidth: "1170px",
+                                    isMove: false,
+                                    isShowButton: true,
+                                    isComponent: true,
+                                    component: <div className='flex flex-col space-y-8'>
+                                        <div className="flex gap-14">
+                                            {ourProduct.map((data) => (
                                                 <ProductCard prop={data} />
                                             ))}
-                                        </div>,
-                                        title1: "Todays",
-                                        title2: "Flash Sales",
-                                    }}
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    {/* Browse By Category */}
-
-                    <div className=''>
-                        <div className='flex justify-center '>
-
-                            <div className=''>
-                                <Slider
-                                    prop={{
-                                        itemWidth: 200,
-                                        itemheight: 350,
-                                        numItems: 7,
-                                        showItems: 4,
-                                        image: "",
-                                        spacing: 16,
-                                        width: "1170px",
-                                        containerWidth: "1170px",
-                                        isMove: false,
-                                        isShowButton: true,
-                                        isComponent: true,
-                                        component: <div className='flex gap-[30px]'>
-                                            {categoriesData.map((data) => (
-                                                <Categories prop={data} />
+                                        </div>
+                                        <div className="flex gap-14">
+                                            {ourProduct2.map((data) => (
+                                                <ProductCard prop={data} />
                                             ))}
-                                        </div>,
-                                        title1: "Categories",
-                                        title2: "Browse By Category",
-                                    }}
-                                />
-                            </div>
+                                        </div>
+                                    </div>,
+
+                                    title1: "Our Product's",
+                                    title2: "Explore Our Product's",
+                                    gapbetween: 60
+                                }}
+                            />
                         </div>
                     </div>
-
-
-                    {/* Best Selling Products */}
-
-                    <div className=' '>
-                        <div className=' flex justify-center '>
-                            <Products_Button prop={{
-                                component: <>{
-                                    homePage_Product_Button.map((data) => (
-                                        <ProductCard prop={data} />
-                                    ))
-                                }</>,
-                                title1: "This Month",
-                                title2: "Best Selling Products",
-                                buttonContent: "View All",
-                                buttonColor: "rgba(219, 68, 68, 1)",
-                                textColor: "white",
-                                marginTop: "30px",
-                            }} />
-
-                        </div>
-                    </div>
-
-
-                    {/* Category */}
-                    <div className=' '>
-                        <div className=' flex justify-center '>
-                            <Category prop={{ component: <Timer prop={{ days: 10, hours: 10, minutes: 10, seconds: 10, component: 2 }} /> }} />
-                        </div>
-                    </div>
-
-
-                    {/* Explore Our Product's */}
-                    <div className='flex flex-col items-center gap-10 '>
-                        <div className='  flex justify-center '>
-
-                            <div>
-                                <Slider
-                                    prop={{
-                                        itemWidth: 310,
-                                        itemheight: 350,
-                                        numItems: 6,
-                                        showItems: 4,
-                                        image: "",
-                                        spacing: 16,
-                                        width: "1170px",
-                                        containerWidth: "1170px",
-                                        isMove: false,
-                                        isShowButton: true,
-                                        isComponent: true,
-                                        component: <div className='flex flex-col space-y-8'>
-                                            <div className="flex gap-14">
-                                                {ourProduct.map((data) => (
-                                                    <ProductCard prop={data} />
-                                                ))}
-                                            </div>
-                                            <div className="flex gap-14">
-                                                {ourProduct2.map((data) => (
-                                                    <ProductCard prop={data} />
-                                                ))}
-                                            </div>
-                                        </div>,
-
-                                        title1: "Our Product's",
-                                        title2: "Explore Our Product's",
-                                        gapbetween: 60
-                                    }}
-                                />
-                            </div>
-                        </div>
-                        <button className='bg-[#DB4444] w-[234px] h-[56px] text-white'>View All Products</button>
-                    </div>
-
-
-
-                    {/* New Arrival */}
-                    <div className=' '>
-                        <div className=' flex justify-center '>
-                            <NewArrivalComponent />
-                        </div>
-                    </div>
-
-
-                    {/* Bottom Components */}
-                    <div className='flex justify-center '>
-                        <div className='flex justify-between w-[943px]'>
-                            <BottomComponents prop={{
-                                image: "./icon-delivery.svg",
-                                title: "FREE AND FAST DELIVERY",
-                                description: "Free delivery for all orders over $140",
-                            }} />
-                            <BottomComponents prop={{
-                                image: "./Icon-Customer service.svg",
-                                title: "24/7 CUSTOMER SERVICE",
-                                description: "Friendly 24/7 customer support",
-                            }} />
-                            <BottomComponents prop={{
-                                image: "./Icon-secure.svg",
-                                title: "MONEY BACK GUARANTEE",
-                                description: "We reurn money within 30 days",
-                            }} />
-                        </div>
-                    </div>
-
-
+                    <button className='bg-[#DB4444] w-[234px] h-[56px] text-white'>View All Products</button>
                 </div>
+
+
+                {/* New Arrival */}
+                <div className=' '>
+                    <div className=' flex justify-center '>
+                        <NewArrivalComponent />
+                    </div>
+                </div>
+
+
+                {/* Bottom Components */}
+                <div className='flex justify-center '>
+                    <div className='flex justify-between w-[943px]'>
+                        <BottomComponents prop={{
+                            image: "./icon-delivery.svg",
+                            title: "FREE AND FAST DELIVERY",
+                            description: "Free delivery for all orders over $140",
+                        }} />
+                        <BottomComponents prop={{
+                            image: "./Icon-Customer service.svg",
+                            title: "24/7 CUSTOMER SERVICE",
+                            description: "Friendly 24/7 customer support",
+                        }} />
+                        <BottomComponents prop={{
+                            image: "./Icon-secure.svg",
+                            title: "MONEY BACK GUARANTEE",
+                            description: "We reurn money within 30 days",
+                        }} />
+                    </div>
+                </div>
+
+
             </div>
+            {/* </div> */}
             <div className='mt-24'>
                 <Footer />
             </div>

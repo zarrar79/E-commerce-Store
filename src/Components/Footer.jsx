@@ -41,7 +41,7 @@ export default function Footer() {
                     
                     <div className="flex flex-col justify-between w-[198px] h-[110px]">
                         <div className="text-gray-400 h-[18px] text-xs">Save $3 with App New User Only</div>
-                        <div className="flex">
+                        <div className="flex justify-between">
                             <div><img className="w-[80px] h-[80px]" src="./Qr Code.svg" alt="Qr Code image" /></div>
                             <div className="flex flex-col justify-between">
                                 <div><img src="./Google-play-logo.svg" alt="Google play image" /></div>
