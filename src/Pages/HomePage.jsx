@@ -13,6 +13,7 @@ import { Description } from '@mui/icons-material'
 import NewArrivalComponent from '../Components/NewArrivalComponent.jsx'
 import BottomComponents from '../Components/BottomComponents.jsx'
 import Footer from '../Components/Footer.jsx'
+import "../Pages/HomePageResponsive.css"
 
 
 export default function HomePage() {
@@ -334,7 +335,7 @@ export default function HomePage() {
                     <NavigationBar />
                 </div>
                 <hr className='-mt-16' />
-                <div className='flex justify-center -mt-10'>
+                <div className='flex justify-center gap-8 -mt-10'>
                     <SideBar />
                     <Slider
                         prop={{
@@ -356,8 +357,8 @@ export default function HomePage() {
 
 
                 {/* Flash Sales */}
-                <div className='ml-auto mt-8 w-[1308px]'>
-                    <Slider
+                <div className='Flash-sales-slider ml-auto mt-8 max-w-[1308px] border border-red-600'>
+                    <Slider 
                         prop={{
                             itemWidth: 280,
                             itemheight: 350,
@@ -391,7 +392,7 @@ export default function HomePage() {
                 <div className=''>
                     <div className='flex justify-center '>
 
-                        <div className=''>
+                        <div className='center-slider'>
                             <Slider
                                 prop={{
                                     itemWidth: 200,
@@ -418,12 +419,12 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                <hr className='w-[1170px] mx-auto' />
+                <hr className='max-w-[1170px] mx-auto' />
 
                 {/* Best Selling Products */}
 
                 <div className=' '>
-                    <div className=' flex justify-center '>
+                    <div className='flex justify-center '>
                         <Products_Button prop={{
                             component: <>{
                                 homePage_Product_Button.map((data) => (
@@ -454,7 +455,7 @@ export default function HomePage() {
                 <div className='flex flex-col items-center gap-10 '>
                     <div className='  flex justify-center '>
 
-                        <div>
+                        <div className='center-slider'>
                             <Slider
                                 prop={{
                                     itemWidth: 310,
