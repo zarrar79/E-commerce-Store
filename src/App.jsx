@@ -8,11 +8,11 @@ import './index.css';
 function App() {
 
   return (
-    // <HomePage />
+    <HomePage />
 
     // <SignUp/>
 
-    <Login />
+    // <Login />
   )
 }
 

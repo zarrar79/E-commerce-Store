@@ -11,7 +11,7 @@ export default function ProductCard({ prop }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-      <Card className="flex flex-col w-[250px] rounded-lg relative shadow-md border"
+      <Card className="product-card flex flex-col w-[250px] rounded-lg relative shadow-md"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >

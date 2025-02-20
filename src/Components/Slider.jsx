@@ -48,7 +48,7 @@ export default function Slider({ prop }) {
 
     return (
 
-        <div className='flex flex-col ' style={{ rowGap: prop.spacing, width: prop.containerWidth, marginLeft: prop.marginLeft, marginTop: prop.marginTop }}>
+        <div className={`slider borer border-red-600 flex flex-col w-[${prop.containerWidth}] ml-[${prop.marginLeft}] mt-[${prop.marginTop}]`} style={{ rowGap: prop.spacing }}>
 
 
 
@@ -63,7 +63,7 @@ export default function Slider({ prop }) {
 
                         }}
                     />
-                    <div className='mt-[40px] max-w-40 mr-10'>
+                    <div className='slider-buttons mt-[40px] max-w-40 mr-10'>
                         <button className='p-3 size-12 bg-slate-200 rounded-full' onClick={() => moveSlider('prev')}>
                             <img src="./icons_arrow.svg" alt="" />
                         </button>
@@ -72,16 +72,16 @@ export default function Slider({ prop }) {
                         </button>
                     </div>
                 </div>}
-            <div className="border overflow-hidden" style={{ width: prop.width }}>
+            <div className={`container overflow-hidden `} style={{  }}>
                 <div
-                    className=" flex transition-all duration-500 ease-in-out "
+                    className={`slider-itemwidth-movement w-[${prop.width}] flex transition-all duration-500 ease-in-out`}
                     style={{
                         transform: `translateX(-${(i - 1) * prop.itemWidth}px)`,
                         gap: prop.gapbetween,
                     }}
                 >
 
-                    {prop.isComponent ? prop.component : <div className='flex'>
+                    {prop.isComponent ? prop.component : <div className='image-slider flex w-[892px]'>
                         <div style={itemStyles}><img src={prop.image} alt="" /></div>
                         <div style={itemStyles}><img src={prop.image} alt="" /></div>
                         <div style={itemStyles}><img src={prop.image} alt="" /></div>

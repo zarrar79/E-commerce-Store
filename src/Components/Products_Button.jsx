@@ -3,7 +3,7 @@ import Title from "./Title";
 
 export default function Products_Button({ prop }) {
     return (
-        <div className="flex flex-col gap-[60px] w-[1170px]">
+        <div className="products-container flex flex-col gap-[60px] w-[1170px]">
             <div className="flex justify-between">
                 <Title prop={{
                     title1: prop.title1,
