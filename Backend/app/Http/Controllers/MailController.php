@@ -25,7 +25,7 @@ public function sendEmail(Request $request)
     ];
 
     try {
-        // Send email to zakin@gmail.com
+        
         Mail::to(new Address($data['from_email'], 'Zakin Ahmad'))->send(new MyTestMail($data));
 
         return response()->json([
