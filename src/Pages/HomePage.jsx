@@ -324,18 +324,18 @@ export default function HomePage() {
 
 
     return (
-        <div>
+        <div className='border border-red-700'>
             <div>
                 <TopHeader />
             </div>
             
-            <div className='flex gap-20 justify-center flex-col'>
+            <div className='main-container flex gap-20 justify-center flex-col'>
 
                 <div className=''>
                     <NavigationBar />
                 </div>
                 <hr className='-mt-16' />
-                <div className='flex justify-center gap-8 -mt-10'>
+                <div className='top-slider flex justify-center gap-8 -mt-10'>
                     <SideBar />
                     <Slider
                         prop={{
@@ -445,7 +445,7 @@ export default function HomePage() {
 
                 {/* Category */}
                 <div className='mt-8 '>
-                    <div className=' flex justify-center '>
+                    <div className='flex justify-center '>
                         <Category prop={{ component: <Timer prop={{ days: 10, hours: 10, minutes: 10, seconds: 10, timerComponent: 2 }} /> }} />
                     </div>
                 </div>
@@ -503,7 +503,7 @@ export default function HomePage() {
 
                 {/* Bottom Components */}
                 <div className='flex justify-center '>
-                    <div className='flex justify-between w-[943px]'>
+                    <div className='bottom-components-div flex justify-between w-[943px]'>
                         <BottomComponents prop={{
                             image: "./icon-delivery.svg",
                             title: "FREE AND FAST DELIVERY",
