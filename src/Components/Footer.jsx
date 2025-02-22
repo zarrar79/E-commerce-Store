@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
-        <footer className="flex flex-col justify-between items-center footer border bg-black h-[440px]">
-            <div className="flex justify-between w-[1170px] h-[236px] mt-[80px]">
+        <footer className="flex flex-col justify-between items-center border bg-black h-[440px]">
+            <div className="footer flex justify-between w-[1170px] h-[236px] mt-[80px]">
                 <div className="flex flex-col justify-between w-[217px] h-[188px]">
                     <div className="flex flex-col justify-between h-[124px]">
                         <div className="text-white font-bold text-2xl">Exclusive</div>
@@ -61,7 +61,7 @@ export default function Footer() {
 
             </div>
             <div className="flex justify-center items-end mb-8 w-full h-[40px]">
-                    <div className="text-gray-400 text-lg">&copy; Copyright Rimel 2022. All right reserved</div>
+                    <div className="text-gray-400 text-sm">&copy; Copyright Rimel 2022. All right reserved</div>
             </div>
         </footer>
     )

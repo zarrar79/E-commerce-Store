@@ -17,9 +17,9 @@ export default function NavigationBar() {
     return (
 
         <div className="flex justify-center mt-[40px] h-[48px]">
-            <div className="flex items-center w-[1170px] justify-between">
-                <div className="font-bold text-3xl">Exclusive</div>
-                <div className="">
+            <div className="navigation-bar flex items-center w-[1170px] justify-between">
+                <div className="exclusive-text font-bold text-3xl">Exclusive</div>
+                <div className="list">
                     <ul className="flex  gap-[48px]">
                         <li>
                             <a href="#" className="hover:text-gray-300">Home</a>
@@ -36,7 +36,7 @@ export default function NavigationBar() {
                     </ul>
                 </div>
 
-                <div className="flex justify-between items-center w-[370px]">
+                <div className="navbar-right flex justify-between items-center w-[370px]">
                     <div className="flex justify-center w-[240px] h-[38px] bg-gray-100 rounded-lg " style={{ display: 'flex', alignItems: 'center' }}>
                         <input className="bg-gray-100 roun outline-none placeholder:text-sm"
                             ref={inputRef}
