@@ -25,10 +25,11 @@ public function sendEmail(Request $request)
     ];
 
     try {
-        
-        Mail::to(new Address($data['from_email'], 'Zakin Ahmad'))->send(new MyTestMail($data));
+
+        Mail::to(env('MAIL_TO_ADDRESS'))->send(new MyTestMail($data));
 
         return response()->json([
+            'data' => $data,
             'success' => true,
             'message' => 'Email sent successfully!',
         ], 200);

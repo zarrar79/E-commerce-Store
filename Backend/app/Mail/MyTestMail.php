@@ -19,14 +19,18 @@ class MyTestMail extends Mailable
     {
         $this->data = $data;
     }
-
+    
     public function envelope(): Envelope
-{
-    return new Envelope(
-        from: new Address($this->data['from_email'], 'Zarrar Shah'),  
-        subject: $this->data['subject'] ?? 'Default Subject'
-    );
-}
+    {
+        xdebug_break();
+
+        return new Envelope(
+            from: new Address($this->data['from_email'], 'User Inquire'),
+            to: [new Address(env('MAIL_TO_ADDRESS'), 'Admin')], 
+            subject: $this->data['subject'] ?? 'New Contact Form Submission'
+        );
+    }
+    
 
     public function content(): Content
     {
