@@ -1,9 +1,30 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import NavDrawer from "./NavDrawer";
 
 export default function NavigationBar() {
+
+    const [screenSize, setScreenSize] = useState("small");
+
+    const updateScreenSize = () => {
+        if (window.matchMedia("(max-width: 850px)").matches) {
+            setScreenSize("small");
+        } else {
+            setScreenSize("large");
+        }
+    };
+
+    useEffect(() => {
+        updateScreenSize(); // Initial check
+        window.addEventListener("resize", updateScreenSize); // Listen to resize events
+
+        return () => window.removeEventListener("resize", updateScreenSize); // Cleanup
+    }, []);
+
+
+
 
     const [isInputVisible, setInputVisible] = useState(true);
     const inputRef = useRef(null);
@@ -19,48 +40,63 @@ export default function NavigationBar() {
         <div className="flex justify-center mt-[40px] h-[48px]">
             <div className="navigation-bar flex items-center w-[1170px] justify-between">
                 <div className="exclusive-text font-bold text-3xl">Exclusive</div>
-                <div className="list">
-                    <ul className="flex  gap-[48px]">
-                        <li>
-                            <a href="#" className="hover:text-gray-300">Home</a>
-                        </li>
-                        <li>
-                            <a href="#about" className="hover:text-gray-300">About</a>
-                        </li>
-                        <li>
-                            <a href="#services" className="hover:text-gray-300">Services</a>
-                        </li>
-                        <li>
-                            <a href="#contact" className="hover:text-gray-300">Contact</a>
-                        </li>
-                    </ul>
-                </div>
 
-                <div className="navbar-right flex justify-between items-center w-[370px]">
-                    <div className="flex justify-center w-[240px] h-[38px] bg-gray-100 rounded-lg " style={{ display: 'flex', alignItems: 'center' }}>
-                        <input className="bg-gray-100 roun outline-none placeholder:text-sm"
-                            ref={inputRef}
-                            type="text"
-                            placeholder="What are you looking for?"
-                            style={{
-                                opacity: isInputVisible ? 1 : 0,
-                                visibility: isInputVisible ? 'visible' : 'hidden',
-                                transition: 'opacity 0.3s ease',
-                            }}
-                        />
-                        <IconButton onClick={handleIconClick}>
-                            <SearchIcon className="-mr-4" />
-                        </IconButton>
+                {screenSize === "small" ? (
+                    <NavDrawer />
+                ) : (
+                    <div className="flex justify-between items-center w-full">
+                        {/* Navigation Links */}
+                        <div className="list">
+                            <ul className="flex gap-[48px]">
+                                {["Home", "About", "Services", "Contact"].map((item) => (
+                                    <li key={item}>
+                                        <a href={`#${item.toLowerCase()}`} className="hover:text-gray-300">
+                                            {item}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Search Bar and Icons */}
+                        <div className="navbar-right flex items-center gap-4">
+                            {/* Search Input */}
+                            <div
+                                className="flex items-center w-[240px] h-[38px] bg-gray-100 rounded-lg"
+                                style={{ transition: "all 0.3s ease" }}
+                            >
+                                <input
+                                    className="bg-transparent outline-none placeholder:text-sm flex-grow"
+                                    ref={inputRef}
+                                    type="text"
+                                    placeholder="What are you looking for?"
+                                    style={{
+                                        opacity: isInputVisible ? 1 : 0,
+                                        visibility: isInputVisible ? "visible" : "hidden",
+                                        transition: "opacity 0.3s ease",
+                                    }}
+                                />
+                                <IconButton onClick={handleIconClick}>
+                                    <SearchIcon />
+                                </IconButton>
+                            </div>
+
+                            {/* Icons Section */}
+                            <div className="flex gap-4">
+                                <IconButton>
+                                    <FavoriteBorderIcon className="text-sm" />
+                                </IconButton>
+                                <IconButton>
+                                    <img src="/Cart.svg" alt="Cart logo" />
+                                </IconButton>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex justify-between w-[100px]">
-                        <IconButton>
-                            <FavoriteBorderIcon className="text-sm" />
-                        </IconButton>
-                        <IconButton>
-                            <img src="/Cart.svg" alt="Cart logo" />
-                        </IconButton>
-                    </div>
-                </div>
+                )}
+
+
+
+
             </div>
         </div>
     )

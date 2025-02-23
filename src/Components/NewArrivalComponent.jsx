@@ -42,7 +42,7 @@ export default function NewArrivalComponent() {
 
                         {/* Left */}
                         <div className="relative right-bottom-left-div flex justify-center items-center w-[270px] h-[284px] bg-black">
-                            <img className="w-[70%]" src="./Speakers.svg" alt="Speakers Image" />
+                            <img className="bottom-img w-[70%]" src="./Speakers.svg" alt="Speakers Image" />
                             <div className="absolute mt-16 z-10 w-[70%] flex flex-col gap-[16px]">
                                 <NewArrivalHeader prop={{
                                     title: "Speakers",
@@ -54,7 +54,7 @@ export default function NewArrivalComponent() {
 
                         {/* Right */}
                         <div className="relative right-bottom-right-div flex justify-center items-center w-[270px] h-[284px] bg-black">
-                            <img className="w-[70%]" src="./Perfumes.svg" alt="Perfumes Image" />
+                            <img className="bottom-img w-[70%]" src="./Perfumes.svg" alt="Perfumes Image" />
                             <div className="absolute mt-16 z-10 w-[70%] flex flex-col gap-[16px]">
                                 <NewArrivalHeader prop={{
                                     title: "Perfume",

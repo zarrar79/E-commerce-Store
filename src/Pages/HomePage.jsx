@@ -14,6 +14,8 @@ import NewArrivalComponent from '../Components/NewArrivalComponent.jsx'
 import BottomComponents from '../Components/BottomComponents.jsx'
 import Footer from '../Components/Footer.jsx'
 import "../Pages/HomePageResponsive.css"
+import React, { useState, useEffect } from "react";
+
 
 
 export default function HomePage() {
@@ -126,10 +128,6 @@ export default function HomePage() {
         }
     ]
 
-
-
-
-
     const homePage_Product_Button = [
         {
             title: "The north coat",
@@ -161,6 +159,53 @@ export default function HomePage() {
         },
 
     ]
+
+
+    const homePage_Product_Button2 = [
+        {
+            title: "The north coat",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+        },
+        {
+            title: "The south coat",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+        },
+        {
+            title: "The north coat",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+        },
+
+    ]
+
+
+
+    const homePage_Product_Button3 = [
+        {
+            title: "The north coat",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+        },
+        {
+            title: "The south coat",
+            newprice: "$120",
+            oldprice: "$160",
+            discount: "-40%",
+            img: "/GamePhoto.svg",
+        },
+    ]
+
+
 
     const ourProduct = [
         {
@@ -323,12 +368,35 @@ export default function HomePage() {
 
 
 
+
+    const [screenSize, setScreenSize] = useState("small");
+
+    const updateScreenSize = () => {
+        if (window.matchMedia("(min-width: 1170px)").matches) {
+            setScreenSize("large");
+        } else if (window.matchMedia("(min-width: 850px) and (max-width: 1169px)").matches) {
+            setScreenSize("medium");
+        } else {
+            setScreenSize("small");
+        }
+    };
+
+    useEffect(() => {
+        updateScreenSize(); // Initial check
+        window.addEventListener("resize", updateScreenSize); // Listen to resize events
+
+        return () => window.removeEventListener("resize", updateScreenSize); // Cleanup
+    }, []);
+
+
+
+
     return (
         <div className='border border-red-700'>
             <div>
                 <TopHeader />
             </div>
-            
+
             <div className='main-container flex gap-20 justify-center flex-col'>
 
                 <div className=''>
@@ -358,7 +426,7 @@ export default function HomePage() {
 
                 {/* Flash Sales */}
                 <div className='Flash-sales-slider ml-auto mt-8 max-w-[1308px] border border-red-600'>
-                    <Slider 
+                    <Slider
                         prop={{
                             itemWidth: 280,
                             itemheight: 350,
@@ -421,16 +489,31 @@ export default function HomePage() {
 
                 <hr className='max-w-[1170px] mx-auto' />
 
-                {/* Best Selling Products */}
 
+                {/* Best Selling Products */}
                 <div className=' '>
                     <div className='flex justify-center '>
                         <Products_Button prop={{
-                            component: <>{
-                                homePage_Product_Button.map((data) => (
-                                    <ProductCard prop={data} />
-                                ))
-                            }</>,
+                            component: <>
+                                {screenSize === "large" ? (
+                                    homePage_Product_Button.map((data, index) => (
+                                        <ProductCard key={index} prop={data} />
+                                    ))
+                                ) : screenSize === "medium" ? (
+                                    homePage_Product_Button2.map((data, index) => (
+                                        <ProductCard key={index} prop={data} />
+                                    ))
+                                ) : screenSize === "small" ? (
+                                    homePage_Product_Button3.map((data, index) => (
+                                        <ProductCard key={index} prop={data} />
+                                    ))
+
+                                ) : (
+                                    <p>No products available for smaller screens.</p>
+                                )}
+                            </>
+
+                            ,
                             title1: "This Month",
                             title2: "Best Selling Products",
                             buttonContent: "View All",
@@ -525,7 +608,7 @@ export default function HomePage() {
 
             </div>
             {/* </div> */}
-            <div className='mt-24'>
+            <div className='mt-24 '>
                 <Footer />
             </div>
 
