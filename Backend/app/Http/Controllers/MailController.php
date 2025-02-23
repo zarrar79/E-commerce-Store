@@ -30,7 +30,7 @@ public function sendEmail(Request $request)
 
         return response()->json([
             'data' => $data,
-            'success' => true,
+            'success' => true  ,
             'message' => 'Email sent successfully!',
         ], 200);
     } catch (\Exception $e) {
