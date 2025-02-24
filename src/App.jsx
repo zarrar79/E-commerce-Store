@@ -4,6 +4,7 @@ import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import HomePage from './Pages/HomePage'
 import './index.css';
+import NavBar from './Components/NavBar';
 
 
 function App() {
@@ -16,8 +17,10 @@ function App() {
 
     // <Login /> */}
 
-    <Drawer />
+    {/* <Drawer /> */}
 
+
+  {/* <NavBar /> */}
     </>
   )
 }
