@@ -17,11 +17,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export default function NavDrawer() {
 
-  
-  
-
-
-
   const [state, setState] = React.useState({
     right: false,
   });
@@ -42,9 +37,9 @@ export default function NavDrawer() {
     >
       <List>
         {[{ text: 'Home', icon: <HomeIcon /> },
-          { text: 'About', icon: <InfoIcon /> },
-          { text: 'Services', icon: <BuildIcon /> },
-          { text: 'Contact', icon: <ContactsIcon /> }].map((item) => (
+        { text: 'About', icon: <InfoIcon /> },
+        { text: 'Services', icon: <BuildIcon /> },
+        { text: 'Contact', icon: <ContactsIcon /> }].map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton>
               <ListItemIcon>{item.icon}</ListItemIcon>
@@ -56,7 +51,7 @@ export default function NavDrawer() {
       <Divider />
       <List>
         {[{ text: 'Wish list', icon: <FavoriteBorderIcon /> },
-          { text: 'Cart', icon: <img src="/Cart.svg" alt="Cart logo" className="w-6 h-6" /> }].map((item) => (
+        { text: 'Cart', icon: <img src="/Cart.svg" alt="Cart logo" className="w-6 h-6" /> }].map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton>
               <ListItemIcon>{item.icon}</ListItemIcon>
@@ -70,9 +65,24 @@ export default function NavDrawer() {
 
   return (
     <div>
-      {['right'].map((anchor) => (
+      {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>
+            <svg
+              className="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

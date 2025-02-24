@@ -15,6 +15,7 @@ import BottomComponents from '../Components/BottomComponents.jsx'
 import Footer from '../Components/Footer.jsx'
 import "../Pages/HomePageResponsive.css"
 import React, { useState, useEffect } from "react";
+import NavBar from '../Components/NavBar.jsx'
 
 
 
@@ -158,51 +159,6 @@ export default function HomePage() {
             img: "/GamePhoto.svg",
         },
 
-    ]
-
-
-    const homePage_Product_Button2 = [
-        {
-            title: "The north coat",
-            newprice: "$120",
-            oldprice: "$160",
-            discount: "-40%",
-            img: "/GamePhoto.svg",
-        },
-        {
-            title: "The south coat",
-            newprice: "$120",
-            oldprice: "$160",
-            discount: "-40%",
-            img: "/GamePhoto.svg",
-        },
-        {
-            title: "The north coat",
-            newprice: "$120",
-            oldprice: "$160",
-            discount: "-40%",
-            img: "/GamePhoto.svg",
-        },
-
-    ]
-
-
-
-    const homePage_Product_Button3 = [
-        {
-            title: "The north coat",
-            newprice: "$120",
-            oldprice: "$160",
-            discount: "-40%",
-            img: "/GamePhoto.svg",
-        },
-        {
-            title: "The south coat",
-            newprice: "$120",
-            oldprice: "$160",
-            discount: "-40%",
-            img: "/GamePhoto.svg",
-        },
     ]
 
 
@@ -400,7 +356,7 @@ export default function HomePage() {
             <div className='main-container flex gap-20 justify-center flex-col'>
 
                 <div className=''>
-                    <NavigationBar />
+                    <NavBar />
                 </div>
                 <hr className='-mt-16' />
                 <div className='top-slider flex justify-center gap-8 -mt-10'>
@@ -495,22 +451,9 @@ export default function HomePage() {
                     <div className='flex justify-center '>
                         <Products_Button prop={{
                             component: <>
-                                {screenSize === "large" ? (
-                                    homePage_Product_Button.map((data, index) => (
-                                        <ProductCard key={index} prop={data} />
-                                    ))
-                                ) : screenSize === "medium" ? (
-                                    homePage_Product_Button2.map((data, index) => (
-                                        <ProductCard key={index} prop={data} />
-                                    ))
-                                ) : screenSize === "small" ? (
-                                    homePage_Product_Button3.map((data, index) => (
-                                        <ProductCard key={index} prop={data} />
-                                    ))
-
-                                ) : (
-                                    <p>No products available for smaller screens.</p>
-                                )}
+                                {homePage_Product_Button.map((data, index) => (
+                                    <ProductCard key={index} prop={data} />
+                                ))}
                             </>
 
                             ,
@@ -610,7 +553,7 @@ export default function HomePage() {
             {/* </div> */}
             <div className='mt-24 '>
                 <Footer />
-            </div>
+            </div>  
 
         </div>
     )

@@ -11,7 +11,7 @@ export default function Products_Button({ prop }) {
                 }}/>
                 <button style={{ backgroundColor: prop.buttonColor, color: prop.textColor, marginTop: prop.marginTop }} className="w-[159px] h-[56px]">{prop.buttonContent}</button>
             </div>
-            <div className="flex justify-between">
+            <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-2 gap-x-8 place-items-center gap-y-8">
                 {prop.component}       
             </div>
         </div>
