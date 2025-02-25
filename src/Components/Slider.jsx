@@ -48,10 +48,7 @@ export default function Slider({ prop }) {
 
     return (
 
-        <div className={`slider borer border-red-600 flex flex-col w-[${prop.containerWidth}] ml-[${prop.marginLeft}] mt-[${prop.marginTop}]`} style={{ rowGap: prop.spacing }}>
-
-
-
+        <div className={`slider flex flex-col w-[${prop.containerWidth}] ml-[${prop.marginLeft}] mt-[${prop.marginTop}]`} style={{ rowGap: prop.spacing }}>
 
             {prop.isShowButton &&
                 <div className='flex justify-between'>
@@ -63,7 +60,7 @@ export default function Slider({ prop }) {
 
                         }}
                     />
-                    <div className='slider-buttons mt-[40px] max-w-40 mr-10'>
+                    <div className='slider-buttons mt-[40px] max-w-25 md:mr-10'>
                         <button className='p-3 size-12 bg-slate-200 rounded-full' onClick={() => moveSlider('prev')}>
                             <img src="./icons_arrow.svg" alt="" />
                         </button>
@@ -72,7 +69,7 @@ export default function Slider({ prop }) {
                         </button>
                     </div>
                 </div>}
-            <div className={`container overflow-hidden `} style={{  }}>
+            <div className={`container overflow-hidden `} style={{}}>
                 <div
                     className={`slider-itemwidth-movement w-[${prop.width}] flex transition-all duration-500 ease-in-out`}
                     style={{

@@ -1,29 +1,24 @@
 @media (min-width: 1280px) and (max-width: 1340px) {
     .Flash-sales-slider {
-        /* border: 2px solid red; */
         max-width: 1200px;
         margin-left: auto;
         overflow: hidden;
     }
 
     .Flash-sales-slider .slider {
-        /* border: 2px solid blue; */
         max-width: 1200px;
     }
 
     .Flash-sales-slider .slider .container {
-        border: 2px solid green;
         max-width: 1200px;
     }
 
     .center-slider {
-        /* border: 2px solid red; */
         max-width: 1100px;
         overflow: hidden;
     }
 
     .center-slider .slider {
-        /* border: 2px solid blue; */
         max-width: 1100px;
     }
 
@@ -36,14 +31,12 @@
 
     /* Top header */
     .top-header {
-        border: 2px solid red;
         max-width: 200px;
         margin-left: auto;
         margin-right: 3%;
     }
 
     .top-header-content{
-        border: 2px solid red;
         display: flex;
         width: 60%;
     }
@@ -51,7 +44,6 @@
 
     /* top slider */
     .top-slider {
-        border: 2px solid blue;
         flex-direction: column;
         align-items: center;
     }
@@ -59,7 +51,6 @@
 
     /* side bar */
     .side-bar {
-        border: 2px solid green;
         flex-direction: column;
         width: 85%;
         max-height: 65px;
@@ -68,7 +59,6 @@
     }
 
     .side-bar ul {
-        border: 2px solid blue;
         display: flex;
         width: 100%;
         flex-direction: row;
@@ -82,28 +72,29 @@
     }
 
     .side-bar ul .women-fashion-li {
-        border: 2px solid blue;
-        width: 140px;
         margin-top: auto;
     }
 
 
     .side-bar ul li img {
-        border: 2px solid blue;
         display: none;
     }
 
     .side-bar ul li{
-        border: 2px solid red;
-        padding: 3px;
         border-radius: 19px;
         cursor: pointer;
+        background-color: rgb(230, 230, 230);
+        display: flex;
+        justify-content: center;
+        width: 18%;
+        padding: 8px;
     }
     
     .side-bar ul li:hover {
-        background-color: rgb(224, 222, 222);
+        background-color: rgb(199, 199, 199);
         color: rgb(46, 46, 46);
     }
+
     .side-bar ul li a:hover {
         color: rgb(46, 46, 46);
     }
@@ -111,42 +102,35 @@
 
     /* flash sales slider */
     .Flash-sales-slider {
-        border: 2px solid red;
         max-width: 1050px;
         margin-left: auto;
         overflow: hidden;
     }
 
     .Flash-sales-slider .slider {
-        border: 2px solid blue;
         max-width: 1050px;
     }
 
     .Flash-sales-slider .slider .container {
-        border: 2px solid green;
         max-width: 1080px;
     }
 
 
     /* center slider */
     .center-slider {
-        border: 2px solid red;
         max-width: 1000px;
         overflow: hidden;
     }
 
     .center-slider .slider {
-        border: 2px solid blue;
         max-width: 1000px;
     }
 
     .products-container {
-        border: 2px solid red;
         max-width: 1000px;
     }
 
     .product-card {
-        border: 2px solid blue;
         max-width: 225px;
     }
 
@@ -158,33 +142,16 @@
 
     /* Category Enhance your music component */
     .category-enhance-your-music {
-        border: 2px solid red;
         max-width: 1000px;
     }
 
     .category-enhance-your-music .category-left {
-        border: 2px solid red;
         max-width: 380px;
         z-index: 1;
     }
 
     .category-enhance-your-music .category-right {
-        border: 2px solid red;
         max-width: 530px;
-    }
-
-
-    /* Bottom components */
-    .bottom-components-div {
-        border: 2px solid red;
-        max-width: 900px;
-    }
-
-
-    /* Footer */
-    .footer {
-        border: 2px solid red;
-        max-width: 1000px;
     }
 
 }
@@ -200,7 +167,6 @@
 
     /* Top header */
     .top-header {
-        border: 2px solid red;
         max-width: 10%;
         margin-left: auto;
         margin-right: 3%;
@@ -212,7 +178,6 @@
     }
 
     .top-header-content{
-        border: 2px solid red;
         display: flex;
         width: 70%;
         justify-content: center;
@@ -220,15 +185,12 @@
 
     /* top slider */
     .top-slider {
-        border: 2px solid blue;
         flex-direction: column;
         align-items: center;
-        /* width: 70%  ; */
     }
 
 
     .top-slider .slider{
-        border: 2px solid blue;
         flex-direction: column;
         align-items: center;
         width: fit-content;
@@ -238,7 +200,6 @@
 
     /* side bar */
     .side-bar {
-        border: 2px solid green;
         flex-direction: column;
         width: 85%;
         max-height: 65px;
@@ -247,7 +208,6 @@
     }
 
     .side-bar ul {
-        border: 2px solid blue;
         display: flex;
         width: 100%;
         flex-direction: row;
@@ -261,26 +221,28 @@
     }
 
     .side-bar ul .women-fashion-li {
-        border: 2px solid blue;
-        width: 140px;
+        width: 155px;
         margin-top: auto;
+        padding: 8px;
     }
 
 
     .side-bar ul li img {
-        border: 2px solid blue;
         display: none;
     }
 
     .side-bar ul li{
-        border: 2px solid red;
-        padding: 3px;
         border-radius: 19px;
         cursor: pointer;
+        background-color: rgb(230, 230, 230);
+        display: flex;
+        justify-content: center;
+        width: 18%;
+        padding: 8px;
     }
     
     .side-bar ul li:hover {
-        background-color: rgb(224, 222, 222);
+        background-color: rgb(199, 199, 199);
         color: rgb(46, 46, 46);
     }
     .side-bar ul li a:hover {
@@ -290,7 +252,6 @@
 
     /* flash sales slider */
     .Flash-sales-slider {
-        border: 2px solid red;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -299,24 +260,16 @@
     }
 
     .Flash-sales-slider .slider {
-        border: 2px solid blue;
         max-width: 80%;
     }
 
     .Flash-sales-slider .slider .container {
-        border: 2px solid green;
         max-width: 100%;
-    }
-    .main-container {
-        /* width: 100vw;     */
-         border: 2px solid green;
-        
     }
 
 
     /* center slider */
     .center-slider {
-        border: 2px solid red;
         width: 98vw;
         overflow: hidden;
         display: flex;
@@ -324,42 +277,31 @@
     }
 
     .center-slider .slider {
-        border: 2px solid blue;
         max-width: 80%;
     }
 
     .center-slider .slider .container {
-        border: 2px solid green;
         max-width: 100%;
     }
 
     .products-container {
-        border: 2px solid red;
         max-width: 80%;
     }
 
     .products-container .product-card{
-        border: 2px solid red;
         max-width: 100%;
     }
 
     .new-arrival-component{
-        border: 2px solid red;
         width: 80%;
     }
 
     .right-top-new-arrival-header{
-        /* margin-left: 600px; */
-        border: 2px solid red;
         margin-right: 90%;
     }
 
     .product-card {
-        border: 2px solid red;
-        /* max-width: 23%; */
         max-width: 220px;
-        /* height: fit-content; */
-        /* height: 60%; */
     }
 
     .slider-itemwidth-movement {
@@ -374,18 +316,15 @@
 
     /* Category Enhance your music component */
     .category-enhance-your-music {
-        border: 2px solid red;
         max-width: 80%;
     }
 
     .category-enhance-your-music .category-left {
-        border: 2px solid red;
         max-width: 30%;
         z-index: 1;
     }
 
     .category-enhance-your-music .category-right{
-        border: 2px solid red;
         max-width: 60%;
     }
 
@@ -394,29 +333,7 @@
         max-width: 50%;
     }
 
-
-    /* Bottom components */
-    .bottom-components-div {
-        border: 2px solid red;
-        max-width: 80%;
-    }
-
-    .bottom-components-div .bottom-components {
-        border: 2px solid red;
-        max-width: 29%;
-        text-align: center;
-    }
-
-
-    /* Footer */
-    .footer {
-        border: 2px solid red;
-        max-width: 800px;
-    }
-
 }
-
-
 
 
 
@@ -427,7 +344,6 @@
 
     /* Top header */
     .top-header {
-        border: 2px solid red;
         max-width: 10%;
         margin-left: auto;
         margin-right: 3%;
@@ -439,7 +355,6 @@
     }
 
     .top-header-content{
-        border: 2px solid red;
         display: flex;
         width: 70%;
         justify-content: center;
@@ -448,10 +363,160 @@
 
     /* top slider */
     .top-slider {
-        border: 2px solid blue;
         flex-direction: column;
         align-items: center;
-        /* width: 70%  ; */
+        margin-bottom: -60px
+    }
+
+    .top-slider .slider{
+        content-visibility: hidden;
+    }
+
+    /* side bar */
+    .side-bar {
+        flex-direction: column;
+        width: 85%;
+        max-height: 65px;
+        overflow-x: auto;
+        overflow-x: hidden;
+    }
+
+    .side-bar ul {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: anchor-center;
+        gap: 0px 0px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        display: flex;
+        display: -webkit-inline-box;
+    }
+
+    .side-bar ul .women-fashion-li {
+        width: 155px;
+        margin-top: auto;
+        padding: 8px;
+    }
+
+
+    .side-bar ul li img {
+        display: none;
+    }
+
+    .side-bar ul li{
+        border-radius: 19px;
+        cursor: pointer;
+        background-color: rgb(230, 230, 230);
+        display: flex;
+        justify-content: center;
+        width: 150px;
+        padding: 8px;
+    }
+    
+    .side-bar ul li:hover {
+        background-color: rgb(199, 199, 199);
+        color: rgb(46, 46, 46);
+    }
+
+    .side-bar ul li a:hover {
+        color: rgb(46, 46, 46);
+    }
+
+
+    /* flash sales slider */
+    .Flash-sales-slider {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .Flash-sales-slider .slider {
+        max-width: 90%;
+    }
+
+    .Flash-sales-slider .slider .container {
+        max-width: 100%;
+    }
+
+
+    /* center slider */
+    .center-slider {
+        width: 98vw;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+    }
+
+    .center-slider .slider {
+        max-width: 80%;
+    }
+
+    .center-slider .slider .container {
+        max-width: 100%;
+    }
+
+    .products-container {
+        max-width: 80%;
+    }
+
+    .product-card {
+        max-width: 220px;
+    }
+
+    .slider-itemwidth-movement {
+        transform: translateX(200px);
+        /* need to do */
+    }
+
+    .image-slider {
+        width: 892px;
+    }
+
+
+    /* Category Enhance your music component */
+    .category-enhance-your-music {
+        max-width: 80%;
+    }
+
+    .category-enhance-your-music .category-left {
+        max-width: 30%;
+        z-index: 1;
+    }
+
+    .category-enhance-your-music .category-right{
+        max-width: 60%;
+    }
+
+    .category-enhance-your-music .category-right img{
+        max-width: 50%;
+    }
+
+    .bottom-components-div{
+        text-align: center;
+        max-width: 80%;
+    }
+
+}
+
+
+
+
+
+@media (min-width: 0px) and (max-width: 599px) {
+    hr{
+        max-width: 100%;
+    }
+
+
+
+    /* top slider */
+    .top-slider {
+        flex-direction: column;
+        align-items: center;
         margin-bottom: -60px
     }
 
@@ -463,7 +528,6 @@
 
     /* side bar */
     .side-bar {
-        border: 2px solid green;
         flex-direction: column;
         width: 85%;
         max-height: 65px;
@@ -472,7 +536,6 @@
     }
 
     .side-bar ul {
-        border: 2px solid blue;
         display: flex;
         width: 100%;
         flex-direction: row;
@@ -486,28 +549,31 @@
     }
 
     .side-bar ul .women-fashion-li {
-        border: 2px solid blue;
-        width: 140px;
+        width: 155px;
         margin-top: auto;
+        padding: 8px;
     }
 
 
     .side-bar ul li img {
-        border: 2px solid blue;
         display: none;
     }
 
     .side-bar ul li{
-        border: 2px solid red;
-        padding: 3px;
         border-radius: 19px;
         cursor: pointer;
+        background-color: rgb(230, 230, 230);
+        display: flex;
+        justify-content: center;
+        width: 150px;
+        padding: 8px;
     }
     
     .side-bar ul li:hover {
-        background-color: rgb(224, 222, 222);
+        background-color: rgb(199, 199, 199);
         color: rgb(46, 46, 46);
     }
+
     .side-bar ul li a:hover {
         color: rgb(46, 46, 46);
     }
@@ -515,7 +581,6 @@
 
     /* flash sales slider */
     .Flash-sales-slider {
-        border: 2px solid red;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -524,24 +589,15 @@
     }
 
     .Flash-sales-slider .slider {
-        border: 2px solid blue;
         max-width: 90%;
     }
 
     .Flash-sales-slider .slider .container {
-        border: 2px solid green;
         max-width: 100%;
     }
-    .main-container {
-        /* width: 100vw;     */
-         border: 2px solid green;
-        
-    }
-
 
     /* center slider */
     .center-slider {
-        border: 2px solid red;
         width: 98vw;
         overflow: hidden;
         display: flex;
@@ -549,26 +605,19 @@
     }
 
     .center-slider .slider {
-        border: 2px solid blue;
         max-width: 80%;
     }
 
     .center-slider .slider .container {
-        border: 2px solid green;
         max-width: 100%;
     }
 
     .products-container {
-        border: 2px solid red;
         max-width: 80%;
     }
 
     .product-card {
-        border: 2px solid red;
-        /* max-width: 23%; */
         max-width: 220px;
-        /* height: fit-content; */
-        /* height: 60%; */
     }
 
     .slider-itemwidth-movement {
@@ -583,65 +632,20 @@
 
     /* Category Enhance your music component */
     .category-enhance-your-music {
-        border: 2px solid red;
         max-width: 80%;
     }
 
     .category-enhance-your-music .category-left {
-        border: 2px solid red;
         max-width: 30%;
         z-index: 1;
     }
 
     .category-enhance-your-music .category-right{
-        border: 2px solid red;
         max-width: 60%;
     }
 
     .category-enhance-your-music .category-right img{
-        /* border: 2px solid red; */
         max-width: 50%;
-    }
-
-
-    /* Bottom components */
-    .bottom-components-div {
-        border: 2px solid red;
-        max-width: 80%;
-        height: 220px;
-    }
-
-    .bottom-components-div .bottom-components {
-        border: 2px solid red;
-        max-width: 29%;
-        text-align: center;
-        min-height: max-content;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-    }
-
-
-    /* Footer */
-    .footer {
-        border: 2px solid red;
-        max-width: 800px;
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-        min-height: 500px;
-        justify-content: center;
-        align-items: center;
-        max-width: 90%;
-    }
-    .footer-container{
-        /* background-color: black; */
-        min-height:700px;
-    }
-
-    .footer .footer-lower{
-        width: 100%;
     }
 
 }

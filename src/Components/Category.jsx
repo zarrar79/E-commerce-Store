@@ -3,7 +3,7 @@ export default function Category({ prop }) {
         <div className="category-enhance-your-music flex justify-center  items-center category w-[1170px] bg-black h-[500px]">
             <div className="category-left flex flex-col justify-evenly w-[450px] h-[92%] ">
                 <p className="text-green-500 text-sm font-bold">Categories</p>
-                <div className="font-bold text-5xl text-white w-[430px]">Enhance Your Music Experience</div>
+                <div className="font-bold text-3xl md:text-5xl text-white md:w-[430px]">Enhance Your Music Experience</div>
                 {prop.component}
                 <button className="bg-green-500 text-white w-[171px] h-[56px]">Shop Now</button>
             </div>

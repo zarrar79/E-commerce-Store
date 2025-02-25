@@ -1,22 +1,17 @@
 import TopHeader from '../Components/TopHeader'
-import NavigationBar from '../Components/NavigationBar'
 import SideBar from '../Components/SideBar'
 import ProductCard from '../Components/ProductCard'
 import Slider from '../Components/Slider'
-import Title from '../Components/Title.jsx'
 import Categories from '../Components/Categories.jsx'
 import Products_Button from '../Components/Products_Button.jsx'
 import Timer from '../Components/Timer.jsx'
 import Category from '../Components/Category.jsx'
-import NewArrivalHeader from '../Components/NewArrivalHeader.jsx'
-import { Description } from '@mui/icons-material'
 import NewArrivalComponent from '../Components/NewArrivalComponent.jsx'
 import BottomComponents from '../Components/BottomComponents.jsx'
 import Footer from '../Components/Footer.jsx'
 import "../Pages/HomePageResponsive.css"
 import React, { useState, useEffect } from "react";
 import NavBar from '../Components/NavBar.jsx'
-
 
 
 export default function HomePage() {
@@ -348,8 +343,8 @@ export default function HomePage() {
 
 
     return (
-        <div className='border border-red-700'>
-            <div>
+        <div className=''>
+            <div className='hidden md:flex'>
                 <TopHeader />
             </div>
 
@@ -381,7 +376,7 @@ export default function HomePage() {
 
 
                 {/* Flash Sales */}
-                <div className='Flash-sales-slider ml-auto mt-8 max-w-[1308px] border border-red-600'>
+                <div className='Flash-sales-slider ml-auto mt-8 max-w-[1308px]'>
                     <Slider
                         prop={{
                             itemWidth: 280,
@@ -407,7 +402,7 @@ export default function HomePage() {
                     />
                 </div>
 
-                <button className='bg-[#DB4444] w-[234px] h-[56px] text-white mx-auto'>View All Products</button>
+                <button className='bg-[#DB4444]  w-[234px] h-[56px] text-white mx-auto'>View All Products</button>
 
 
                 <hr className='w-[1170px] mx-auto' />
@@ -447,8 +442,8 @@ export default function HomePage() {
 
 
                 {/* Best Selling Products */}
-                <div className=' '>
-                    <div className='flex justify-center '>
+                <div className=''>
+                    <div className='flex justify-center'>
                         <Products_Button prop={{
                             component: <>
                                 {homePage_Product_Button.map((data, index) => (
@@ -520,16 +515,16 @@ export default function HomePage() {
 
 
                 {/* New Arrival */}
-                <div className=' '>
-                    <div className=' flex justify-center '>
+                <div className='flex justify-center'>
+                    <div className=' flex justify-center w-[90%]'>
                         <NewArrivalComponent />
                     </div>
                 </div>
 
 
                 {/* Bottom Components */}
-                <div className='flex justify-center '>
-                    <div className='bottom-components-div flex justify-between w-[943px]'>
+                <div className='bottom-component flex justify-center'>
+                    <div className='bottom-components-div grid grid-cols-1 place-items-center gap-6 md:grid-cols-3 w-[943px]'>
                         <BottomComponents prop={{
                             image: "./icon-delivery.svg",
                             title: "FREE AND FAST DELIVERY",
@@ -548,12 +543,10 @@ export default function HomePage() {
                     </div>
                 </div>
 
-
             </div>
-            {/* </div> */}
-            <div className='mt-24 '>
+            <div className='mt-24'>
                 <Footer />
-            </div>  
+            </div>
 
         </div>
     )
