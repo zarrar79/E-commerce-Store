@@ -7,6 +7,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StripePaymentController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -30,4 +31,8 @@ Route::prefix('vendor')->group(function (){
     });
     Route::get('/', [ProductController::class, 'index']);
     Route::post('/send-email', [MailController::class, 'sendEmail']);
+
+    Route::get('/payment', [StripePaymentController::class, 'processPayment']);
+    Route::get('/payment-success', [StripePaymentController::class, 'paymentSuccess'])->name('payment.success');
+Route::get('/payment-cancel', [StripePaymentController::class, 'paymentCancel'])->name('payment.cancel');
 
