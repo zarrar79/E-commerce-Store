@@ -1,8 +1,10 @@
 export default function Login() {
     return (
-        <div className="login flex justify-between items-center w-[1305px] h-[781px]">
+        <div className=" login flex justify-center items-center w-[100%] h-[781px] mx-auto">
+            <div className="absolute left-[-1px]">
             <img className="w-[805px] h-[781px]" src="./Side Image.svg" alt="Side Image" />
-            <div className="flex flex-col justify-between w-[371px] h-[326px]">
+            </div>
+            <div className="max-w-[371px] h-[326px] z-0">
                 <div className="flex flex-col justify-between w-[336px] h-[78px]">
                     <div className="font-medium text-[36px]">Log in to Exclusive</div>
                     <div className="text-sm">Enter your details below</div>
