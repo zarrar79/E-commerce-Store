@@ -15,7 +15,7 @@ export default function SignUp() {
                 <div className="flex flex-col items-center justify-between w-[371px] h-[188px]">
                     <button className='bg-[#DB4444] w-[371px] h-[56px] text-white mx-auto'>Create Account</button>
                     <button className='flex justify-center items-center border -mt-4 border-gray-600 gap-4 w-[371px] h-[56px]'><img className="w-[24px] h-[24px]" src="./Icon-Google.svg" alt="" /> Sign up with Google</button>
-                    <div className="text-gray-500 border border-red-400 w-[225px] flex justify-between">Already have account? <a className="text-gray-600" href="">Log in</a> </div>
+                    <div className="text-gray-500 border w-[225px] flex justify-between">Already have account? <a className="text-gray-600" href="">Log in</a> </div>
                 </div>
             </div>
         </div>
