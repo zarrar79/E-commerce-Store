@@ -12,6 +12,7 @@ import Footer from '../Components/Footer.jsx'
 import "../Pages/HomePageResponsive.css"
 import React, { useState, useEffect } from "react";
 import NavBar from '../Components/NavBar.jsx'
+import SearchBar from '../Components/SearchBar.jsx'
 
 
 export default function HomePage() {
@@ -547,6 +548,10 @@ export default function HomePage() {
             <div className='mt-24'>
                 <Footer />
             </div>
+
+            
+            <SearchBar />
+            
 
         </div>
     )
