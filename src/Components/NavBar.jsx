@@ -1,6 +1,14 @@
 import React, { useState, useRef } from "react";
+import Cart from "./cart";
 
 export default function NavBar() {
+
+    let [isCart, setisCart] = useState(false)
+
+    const toggleCart = () => {
+        setisCart(!isCart)
+    }
+
     const [expanded, setExpanded] = useState(false);
 
     const [isInputVisible, setInputVisible] = useState(true);
@@ -86,19 +94,28 @@ export default function NavBar() {
                             }} className="bg-gray-200 text-sm outline-none p-1 md:w-[160px] lg:w-[170px]" placeholder="What are you looking for?" />
                             <ion-icon className="text-2xl cursor-pointer" onClick={handleIconClick} name="search-outline"></ion-icon>
                         </div>
+                        {/* <div className={`bg-black h-[100vh] w-[330px] fixed z-50 top-0 right-0 ${isCart ? "translate-x-0" : "-translate-x-full"}`}>
+                            <Cart prop={{ isCart }} />
+                        </div> */}
 
                         <div className="flex items-center justify-between p-1 md:w-[60px] lg:w-[80px]">
                             <ion-icon name="heart-outline" className="text-2xl cursor-pointer"></ion-icon>
-                            <ion-icon name="cart-outline" className="text-2xl cursor-pointer"></ion-icon>
+                            <ion-icon onClick={toggleCart} name="cart-outline" className="text-2xl cursor-pointer"></ion-icon>
+
                         </div>
 
                     </div>
 
                 </nav>
 
+                <Cart prop={{
+                    isCart: isCart,
+                    toggleCart: toggleCart
+                }} />
+
                 {/* Mobile Menu (Expanded) */}
                 {expanded && (
-                    <nav className="absolute bg-white w-[93%] px-6 border border-black flex flex-col py-4 space-y-2 md:hidden lg:hidden">
+                    <nav className="absolute bg-white w-[93%] px-6 border border-black flex flex-col py-4 space-y-2 md:hidden lg:hidden transition-all duration-300">
                         <a href="#" className="flex items-center hover:bg-gray-200 h-8 gap-8 py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"><ion-icon name="home"></ion-icon> Home</a>
                         <a href="#" className="flex items-center hover:bg-gray-200 h-8 gap-8 py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"><ion-icon name="information-circle"></ion-icon> About</a>
                         <a href="#" className="flex items-center hover:bg-gray-200 h-8 gap-8 py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"><ion-icon name="settings"></ion-icon> Services</a>
