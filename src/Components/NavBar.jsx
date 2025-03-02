@@ -1,7 +1,14 @@
 import React, { useState, useRef } from "react";
 import Cart from "./cart";
+import SearchBar from "./SearchBar";
 
 export default function NavBar() {
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const handleToggle = () => {
+        setIsOpen(!isOpen)
+    }
 
     let [isCart, setisCart] = useState(false)
 
@@ -29,6 +36,14 @@ export default function NavBar() {
                             Exclusive
                         </a>
                     </div>
+
+
+                    <div className="md:hidden ml-auto flex gap-5">
+                        <ion-icon onClick={handleToggle} name="search" className="text-2xl cursor-pointer"></ion-icon>
+                        <ion-icon onClick={toggleCart} name="cart-outline" className="text-2xl cursor-pointer"></ion-icon>
+                    </div>
+
+
 
                     {/* Mobile Menu Button */}
                     <button
@@ -112,6 +127,8 @@ export default function NavBar() {
                     isCart: isCart,
                     toggleCart: toggleCart
                 }} />
+
+                <SearchBar isOpen={isOpen} handleToggle={handleToggle} />
 
                 {/* Mobile Menu (Expanded) */}
                 {expanded && (
