@@ -10,6 +10,7 @@ function App() {
   return (
     <>
       <About />
+      {/* <HomePage/> */}
       {/* // <SignUp/>
     // <Login /> */}
     </>

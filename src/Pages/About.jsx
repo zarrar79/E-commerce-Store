@@ -48,10 +48,31 @@ import { FaUsers, FaShoppingCart, FaDollarSign, FaChartLine, FaTwitter, FaInstag
 import NavBar from "../Components/NavBar";
 import SearchBar from "../Components/SearchBar";
 import Footer from "../Components/Footer";
-import SideBar from "../Components/SideBar";
 import TopHeader from "../Components/TopHeader";
+import BottomComponents from '../Components/BottomComponents.jsx'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
+import { useState } from "react";
+
+const teamMembers = [
+    { name: "Tom Cruise", role: "Founder & Chairman", image: "/src/assets/Frame 874.svg" },
+    { name: "Emma Watson", role: "Managing Director", image: "/src/assets/Frame 875.svg" },
+    { name: "Will Smith", role: "Product Designer", image: "/src/assets/Frame 876.svg" },
+  ];
 export default function About() {
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    const stats = [
+      { src: "/src/assets/Services.svg", alt: "Sellers", value: "10.5k", text: "Sellers active in our site" },
+      { src: "/src/assets/Icon-Sale.svg", alt: "Sales", value: "33k", text: "Monthly Product Sale" },
+      { src: "/src/assets/Services (1).svg", alt: "Customers", value: "45.5k", text: "Customers active in our site" },
+      { src: "/src/assets/Services (3).svg", alt: "Revenue", value: "25k", text: "Annual gross sale" },
+    ];
+
     return (
         <>
             {/* Top Header & Navigation */}
@@ -61,112 +82,130 @@ export default function About() {
 
             {/* Main Container */}
             
-                    <SideBar />
-                    <div className="flex bg-gray-100 min-h-screen flex-col">
-                    <div className="flex">
-                    <section className="flex-1 flex justify-center items-center px-6">
-                        <div className="max-w-6xl w-full py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                            
-                            {/* Left Side: Text */}
-                            <div className="text-left">
-                                <h2 className="text-3xl font-extrabold text-gray-900 mb-4">
-                                    About Us
-                                </h2>
-                                <p className="text-lg text-gray-600 leading-relaxed">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                    Sed quis eros at lacus feugiat hendrerit sed ut tortor. 
-                                    Suspendisse et magna quis elit efficitur consequat. 
-                                    Mauris eleifend velit a pretium iaculis. Donec sagittis 
-                                    velit et magna euismod, vel aliquet nulla malesuada.
-                                </p>
-                            </div>
+                  
+                <div className="flex flex-col">
+                    <div className="bg-white py-16  relative">
+  {/* Main Container */}
+  <div className="max-w-6xl mx-auto px-6 md:px-12">
+    <div className=" items-center gap-12 ">
+      
+      {/* Left Side: Text Content */}
+      <div className="w-525px h-336px top-422px left-135px gap-40px">
+        <h2 className="text-5xl font-semibold text-gray-900 mb-6 w-277px h-64px size-54px">Our Story</h2>
+        <p className="text-xs text-gray-600 leading-relaxed">
+          Launched in 2015, Exclusive is South Asia’s premier online shopping<br></br>
+          marketplace with an active presence in Bangladesh. Supported <br></br>by a
+          wide range of tailored marketing, data, and service solutions,<br></br> Exclusive
+          has 10,500 sellers and 300 brands and serves 3<br></br> million customers
+          across the region.
+        </p>
+        <p className="text-xs text-gray-600 leading-relaxed mt-4">
+          Exclusive has more than 1 million products to offer, growing at a<br></br>
+          very fast rate. Exclusive offers a diverse assortment in categories<br></br>
+          ranging from consumer electronics to fashion and home appliances.
+        </p>
+      </div>
 
-                            {/* Right Side: Image */}
-                            <div className="flex justify-center md:justify-end">
-                                <img
-                                    src="https://images.unsplash.com/photo-1531973576160-7125cd663d86"
-                                    alt="About Us"
-                                    className="w-full h-auto max-w-sm md:max-w-md rounded-lg shadow-lg object-cover"
-                                />
-                            </div>
-                        </div>
-                    </section>
-                </div>
+      {/* Right Side: Image */}
+      <div className="flex justify-center ">
+        <img 
+          src="/src/assets/Side Image.svg"
+          alt="Shopping Women"
+          className="w-[100%] h-609px max-w-md md:max-w-lg shadow-lg  right-0 absolute bottom-0 top-1"
+        />
+      </div>
 
+    </div>
+  </div>
+</div>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
                 {/* Statistics Section */}
                 <section className="py-12 bg-white">
-                    <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                        <div className="p-6 border rounded-lg flex flex-col items-center">
-                            <FaUsers className="text-4xl text-red-500 mb-2" />
-                            <span className="text-2xl font-bold">10.5k</span>
-                            <p className="text-gray-500">Sellers active in our site</p>
-                        </div>
-                        <div className="p-6 border rounded-lg bg-red-500 text-white">
-                            <FaShoppingCart className="text-4xl mb-2" />
-                            <span className="text-2xl font-bold">33k</span>
-                            <p>Monthly Product Sale</p>
-                        </div>
-                        <div className="p-6 border rounded-lg flex flex-col items-center">
-                            <FaDollarSign className="text-4xl text-green-500 mb-2" />
-                            <span className="text-2xl font-bold">45.5k</span>
-                            <p className="text-gray-500">Customers active in our site</p>
-                        </div>
-                        <div className="p-6 border rounded-lg flex flex-col items-center">
-                            <FaChartLine className="text-4xl text-blue-500 mb-2" />
-                            <span className="text-2xl font-bold">25k</span>
-                            <p className="text-gray-500">Annual gross sale</p>
-                        </div>
-                    </div>
-                </section>
+      <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-xs">
+        {stats.map((item, index) => (
+          <div
+            key={index}
+            className={`p-6 border w-270px h-230px flex flex-col items-center justify-center shadow-lg transition-all 
+              ${hoveredIndex === index ? "bg-red-500 text-white border-red-500" : "bg-white text-black border-gray-300"}`}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <img src={item.src} alt={item.alt} width={80} height={80} />
+            <span className="text-2xl font-bold mt-2">{item.value}</span>
+            <p>{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
 
                 {/* Team Section */}
-                <section className="py-12 bg-gray-100">
-                    <div className="max-w-6xl mx-auto text-center">
-                        <h2 className="text-3xl font-bold mb-6">Meet Our Team</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {/* Team Member */}
-                            {[
-                                { name: "Tom Cruise", role: "Founder & Chairman", image: "/images/tom-cruise.jpg" },
-                                { name: "Emma Watson", role: "Managing Director", image: "/images/emma-watson.jpg" },
-                                { name: "Will Smith", role: "Product Designer", image: "/images/will-smith.jpg" }
-                            ].map((member, index) => (
-                                <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                                    <img src={member.image} alt={member.name} className="w-full h-60 object-cover rounded-lg"/>
-                                    <h3 className="text-xl font-semibold mt-4">{member.name}</h3>
-                                    <p className="text-gray-500">{member.role}</p>
-                                    <div className="flex justify-center mt-2 space-x-3">
-                                        <FaTwitter className="text-gray-500 hover:text-blue-400 cursor-pointer" />
-                                        <FaInstagram className="text-gray-500 hover:text-pink-500 cursor-pointer" />
-                                        <FaLinkedin className="text-gray-500 hover:text-blue-600 cursor-pointer" />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                
+    
+                <section className="py-12">
+      <div className="max-w-6xl mx-auto ">
+       
 
-                {/* Features Section */}
-                <section className="py-12 bg-white">
-                    <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                        <div className="p-6 border rounded-lg flex flex-col items-center">
-                            <FaTruck className="text-4xl text-gray-700 mb-3" />
-                            <h3 className="text-xl font-semibold">Free & Fast Delivery</h3>
-                            <p className="text-gray-500">Free delivery for all orders over $140</p>
-                        </div>
-                        <div className="p-6 border rounded-lg flex flex-col items-center">
-                            <FaHeadset className="text-4xl text-gray-700 mb-3" />
-                            <h3 className="text-xl font-semibold">24/7 Customer Service</h3>
-                            <p className="text-gray-500">Friendly 24/7 customer support</p>
-                        </div>
-                        <div className="p-6 border rounded-lg flex flex-col items-center">
-                            <FaUndo className="text-4xl text-gray-700 mb-3" />
-                            <h3 className="text-xl font-semibold">Money Back Guarantee</h3>
-                            <p className="text-gray-500">We return money within 30 days</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="px-6"
+        >
+          {teamMembers.map((member, index) => (
+            <SwiperSlide key={index}>
+              <div className="bg-white p-6 ">
+                <img src={member.image} alt={member.name} className="w-370px h-430px object-cover mx-auto" />
+                <h3 className="text-lg  mt-4">{member.name}</h3>
+                <p className="text-gray-500 text-xs">{member.role}</p>
+                <div className="flex  mt-2 space-x-3">
+                  <FaTwitter className="text-gray-500 hover:text-blue-400 cursor-pointer" />
+                  <FaInstagram className="text-gray-500 hover:text-pink-500 cursor-pointer" />
+                  <FaLinkedin className="text-gray-500 hover:text-blue-600 cursor-pointer" />
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </section>
 
+      {/* Features Section */}
+     <div className='bottom-component flex justify-center'>
+                       <div className='bottom-components-div grid grid-cols-1 place-items-center gap-6 md:grid-cols-3 w-[943px]'>
+                           <BottomComponents prop={{
+                               image: "./icon-delivery.svg",
+                               title: "FREE AND FAST DELIVERY",
+                               description: "Free delivery for all orders over $140",
+                           }} />
+                           <BottomComponents prop={{
+                               image: "./Icon-Customer service.svg",
+                               title: "24/7 CUSTOMER SERVICE",
+                               description: "Friendly 24/7 customer support",
+                           }} />
+                           <BottomComponents prop={{
+                               image: "./Icon-secure.svg",
+                               title: "MONEY BACK GUARANTEE",
+                               description: "We reurn money within 30 days",
+                           }} />
+                       </div>
+                   </div>
+    </div>
+
+            
+            <br></br>
+<br></br>
+<br></br>
+<br></br>
             {/* Footer */}
             <Footer />
         </>
