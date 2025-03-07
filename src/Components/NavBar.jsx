@@ -28,7 +28,7 @@ export default function NavBar() {
 
     return (
         <header className="bg-white lg:py-8 ">
-            <div className="px-4 mx-auto max-w-7xl sm:px-6 md:px-4 lg:px-8">
+            <div className="px-2 s:px-4 mx-auto max-w-7xl sm:px-6 md:px-4 lg:px-8">
                 {/* Desktop Navigation */}
                 <nav className="relative flex items-center justify-between h-16  bg-white lg:rounded-md md:shadow-lg lg:shadow-lg md:h-20 lg:h-24 md:py-4 md:px-10 lg:px-8 lg:py-6">
                     <div className="flex-shrink-0">
@@ -38,7 +38,7 @@ export default function NavBar() {
                     </div>
 
 
-                    <div className="md:hidden ml-auto flex gap-5">
+                    <div className="md:hidden ml-auto flex gap-2 xs:gap-5 border border-red-600">
                         <ion-icon onClick={handleToggle} name="search" className="text-2xl cursor-pointer"></ion-icon>
                         <ion-icon onClick={toggleCart} name="cart-outline" className="text-2xl cursor-pointer"></ion-icon>
                     </div>
@@ -54,7 +54,7 @@ export default function NavBar() {
                         {expanded ? (
                             // Close Icon
                             <svg
-                                className="w-6 h-6"
+                                className="w-6 h-6 border border-red-800"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -70,7 +70,7 @@ export default function NavBar() {
                         ) : (
                             // Hamburger Icon
                             <svg
-                                className="w-6 h-6"
+                                className="w-6 h-6 border border-red-800"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
