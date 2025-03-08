@@ -1,146 +1,107 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import Cart from "./cart";
 import SearchBar from "./SearchBar";
+import { TranslationContext } from "../Context/TranslationContext";
 
 export default function NavBar() {
-
-    const [isOpen, setIsOpen] = useState(false)
-
-    const handleToggle = () => {
-        setIsOpen(!isOpen)
-    }
-
-    let [isCart, setisCart] = useState(false)
-
-    const toggleCart = () => {
-        setisCart(!isCart)
-    }
-
+    const { translations, setLanguage } = useContext(TranslationContext);
+    
+    const [isOpen, setIsOpen] = useState(false);
+    const [isCart, setisCart] = useState(false);
     const [expanded, setExpanded] = useState(false);
-
     const [isInputVisible, setInputVisible] = useState(true);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const inputRef = useRef(null);
 
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const toggleCart = () => {
+        setisCart(!isCart);
+    };
+
     const handleIconClick = () => {
-        setInputVisible(true); // Make input visible on icon click
-        inputRef.current?.focus(); // Focus on the input field to show the cursor
+        setInputVisible(true);
+        inputRef.current?.focus();
+    };
+
+    const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+    const changeLanguage = (lang) => {
+        setLanguage(lang);
+        setIsDropdownOpen(false);
     };
 
     return (
-        <header className="bg-white lg:py-8 ">
+        <header className="bg-white lg:py-8">
             <div className="px-2 s:px-4 mx-auto max-w-7xl sm:px-6 md:px-4 lg:px-8">
-                {/* Desktop Navigation */}
-                <nav className="relative flex items-center justify-between h-16  bg-white lg:rounded-md md:shadow-lg lg:shadow-lg md:h-20 lg:h-24 md:py-4 md:px-10 lg:px-8 lg:py-6">
+                <nav className="relative flex items-center justify-between h-16 bg-white lg:rounded-md md:shadow-lg lg:shadow-lg md:h-20 lg:h-24 md:py-4 md:px-10 lg:px-8 lg:py-6">
                     <div className="flex-shrink-0">
                         <a href="#" title="Logo" className="flex text-3xl font-bold">
                             Exclusive
                         </a>
                     </div>
 
-
-                    <div className="md:hidden ml-auto flex gap-2 xs:gap-5 border border-red-600">
+                    <div className="md:hidden ml-auto flex gap-2 xs:gap-5">
                         <ion-icon onClick={handleToggle} name="search" className="text-2xl cursor-pointer"></ion-icon>
                         <ion-icon onClick={toggleCart} name="cart-outline" className="text-2xl cursor-pointer"></ion-icon>
                     </div>
 
-
-
-                    {/* Mobile Menu Button */}
                     <button
                         onClick={() => setExpanded(!expanded)}
                         type="button"
                         className="inline-flex p-2 ml-5 text-black transition-all duration-200 rounded-md md:hidden lg:hidden focus:bg-gray-100 hover:bg-gray-100"
                     >
                         {expanded ? (
-                            // Close Icon
-                            <svg
-                                className="w-6 h-6 border border-red-800"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
+                            <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         ) : (
-                            // Hamburger Icon
-                            <svg
-                                className="w-6 h-6 border border-red-800"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h16m-7 6h7"
-                                />
+                            <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
                             </svg>
                         )}
                     </button>
 
-                    {/* Desktop Menu Links */}
-                    <div className="hidden md:px-4 md:flex md:items-center md:mx-auto md:space-x-5 lg:flex lg:items-center lg:mr-auto lg:space-x-10">
-                        <a href="#" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Home</a>
-                        <a href="#" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">About</a>
-                        <a href="#" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Services</a>
-                        <a href="#" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Contact</a>
+                    <div className="hidden md:flex md:items-center md:mx-auto md:space-x-5 lg:flex lg:items-center lg:mr-auto lg:space-x-10">
+                        <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.home}</a>
+                        <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.about}</a>
+                        <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.services}</a>
+                        <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.contact}</a>
                     </div>
 
-                    {/* Sign Up / Sign In */}
-                    {/* <div className="hidden lg:flex lg:items-center lg:space-x-10">
-                        <a href="#" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Sign up</a>
-                        <a href="#" className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Sign in</a>
-                    </div> */}
-
-                    <div className="hidden ml-0 lg:ml-10 justify-between md:flex md:items-center md:-mr-1 lg:-mr-1 md:mr-auto lg:flex lg:items-center md:w-[270px] lg:w-[350px]">
-                        <div className="flex justify-between items-center p-1 rounded-md gap-3 bg-gray-200">
+                    <div className="hidden ml-0 lg:ml-10 md:flex md:items-center md:w-[270px] lg:w-[350px]">
+                        <div className="flex items-center p-1 rounded-md gap-3 bg-gray-200">
                             <input type="text" ref={inputRef} style={{
                                 opacity: isInputVisible ? 1 : 0,
                                 visibility: isInputVisible ? "visible" : "hidden",
                                 transition: "opacity 0.3s ease",
-                            }} className="bg-gray-200 text-sm outline-none p-1 md:w-[160px] lg:w-[170px]" placeholder="What are you looking for?" />
+                            }} className="bg-gray-200 text-sm outline-none p-1 md:w-[160px] lg:w-[170px]" placeholder={translations.search_placeholder} />
                             <ion-icon className="text-2xl cursor-pointer" onClick={handleIconClick} name="search-outline"></ion-icon>
                         </div>
-                        {/* <div className={`bg-black h-[100vh] w-[330px] fixed z-50 top-0 right-0 ${isCart ? "translate-x-0" : "-translate-x-full"}`}>
-                            <Cart prop={{ isCart }} />
-                        </div> */}
 
                         <div className="flex items-center justify-between p-1 md:w-[60px] lg:w-[80px]">
                             <ion-icon name="heart-outline" className="text-2xl cursor-pointer"></ion-icon>
                             <ion-icon onClick={toggleCart} name="cart-outline" className="text-2xl cursor-pointer"></ion-icon>
-
                         </div>
-
                     </div>
 
+                    <div className="relative hidden md:flex md:items-center">
+                        <button onClick={toggleDropdown} className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600">
+                            Language ▼
+                        </button>
+                        {isDropdownOpen && (
+                            <div className="absolute top-full left-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg w-32">
+                                <button onClick={() => changeLanguage("en")} className="block px-4 py-2 w-full text-left text-black hover:bg-gray-200">English</button>
+                                <button onClick={() => changeLanguage("fr")} className="block px-4 py-2 w-full text-left text-black hover:bg-gray-200">Français</button>
+                            </div>
+                        )}
+                    </div>
                 </nav>
 
-                <Cart prop={{
-                    isCart: isCart,
-                    toggleCart: toggleCart
-                }} />
-
+                <Cart prop={{ isCart, toggleCart }} />
                 <SearchBar isOpen={isOpen} handleToggle={handleToggle} />
-
-                {/* Mobile Menu (Expanded) */}
-                {expanded && (
-                    <nav className="absolute bg-white w-[93%] px-6 border border-black flex flex-col py-4 space-y-2 md:hidden lg:hidden transition-all duration-300">
-                        <a href="#" className="flex items-center hover:bg-gray-200 h-8 gap-8 py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"><ion-icon name="home"></ion-icon> Home</a>
-                        <a href="#" className="flex items-center hover:bg-gray-200 h-8 gap-8 py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"><ion-icon name="information-circle"></ion-icon> About</a>
-                        <a href="#" className="flex items-center hover:bg-gray-200 h-8 gap-8 py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"><ion-icon name="settings"></ion-icon> Services</a>
-                        <a href="#" className="flex items-center hover:bg-gray-200 h-8 gap-8 py-2 text-base font-medium text-black transition-all duration-200 focus:text-blue-600"><ion-icon name="call"></ion-icon> Contact</a>
-                    </nav>
-                )}
             </div>
         </header>
     );
 };
-
