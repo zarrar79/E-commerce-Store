@@ -9,7 +9,7 @@ import Category from '../Components/Category.jsx'
 import NewArrivalComponent from '../Components/NewArrivalComponent.jsx'
 import BottomComponents from '../Components/BottomComponents.jsx'
 import Footer from '../Components/Footer.jsx'
-import "../Pages/HomePageResponsive.css"
+import "../Pages/Responsive.css"
 import React, { useState, useEffect } from "react";
 import NavBar from '../Components/NavBar.jsx'
 import SearchBar from '../Components/SearchBar.jsx'
