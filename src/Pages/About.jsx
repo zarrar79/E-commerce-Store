@@ -28,17 +28,17 @@ const teamMembers = [
   {
     name: "Tom Cruise",
     role: "Founder & Chairman",
-    image: "/src/assets/Frame 874.svg",
+    image: "/src/assets/image 46.svg",
   },
   {
     name: "Emma Watson",
     role: "Managing Director",
-    image: "/src/assets/Frame 875.svg",
+    image: "/src/assets/image 47.svg",
   },
   {
     name: "Will Smith",
     role: "Product Designer",
-    image: "/src/assets/Frame 876.svg",
+    image: "/src/assets/image 51.svg",
   },
 ];
 export default function About() {
@@ -63,9 +63,9 @@ export default function About() {
       <div className="flex flex-col">
         <div className="bg-white py-16 relative">
           {/* Main Container */}
-          <div className=" ml-auto md:justify-between flex lg:p-10 flex-col gap-10 lg:gap-20 lg:flex-row items-center lg:-space-x-20">
+          <div className=" ml-auto md:justify-between flex flex-col gap-10 lg:gap-20 lg:flex-row items-center lg:-space-x-20">
             {/* Left Side: Text Content */}
-            <div className="flex flex-col gap-4 mx-auto w-[80%] lg:w-[525px]">
+            <div className="flex flex-col p-6 md:p-10 gap-4 mx-auto w-[80%] lg:w-[525px]">
               <h2 className="text-5xl font-semibold text-gray-900 mb-6">
                 Our Story
               </h2>
@@ -85,11 +85,11 @@ export default function About() {
             </div>
 
             {/* Right Side: Image */}
-            <div className="flex justify-center">
+            <div className="flex justify-center mx-14 md:m-0">
               <img
                 src="/src/assets/Side Image.svg"
                 alt="Shopping Women"
-                className="w-[80%] lg:w-[100%] h-auto max-md:static"
+                className="w-[705px] lg:w-[100%] mx-auto  h-auto  max-md:static "
               />
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function About() {
                 768: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 },
               }}
-              className="px-6 lg:flex lg:justify-between lg:w-[1170px] lg:gap-9"
+              className="px-6 lg:flex lg:justify-between lg:w-[1170px]  lg:gap-9"
             >
               {teamMembers.map((member, index) => (
                 <SwiperSlide key={index} className="lg:flex lg:justify-between w-[370px]">
@@ -122,7 +122,7 @@ export default function About() {
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-[370px] h-[430px] object-cover mx-auto"
+                      className="w-[236px] h-[392px] object-cover mx-auto"
                     />
                     <h3 className="text-3xl mt-4">{member.name}</h3>
                     <p className="text-gray-500 text-xs">{member.role}</p>
