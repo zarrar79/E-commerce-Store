@@ -76,7 +76,7 @@ export default function NavBar() {
                                 opacity: isInputVisible ? 1 : 0,
                                 visibility: isInputVisible ? "visible" : "hidden",
                                 transition: "opacity 0.3s ease",
-                            }} className="bg-gray-200 text-sm outline-none p-1 md:w-[160px] lg:w-[170px]" placeholder={translations.search_placeholder} />
+                            }} className="bg-gray-200 text-sm outline-none p-1 md:w-[160px] lg:w-[170px]" placeholder={translations.search_placeholder}/>
                             <ion-icon className="text-2xl cursor-pointer" onClick={handleIconClick} name="search-outline"></ion-icon>
                         </div>
 
