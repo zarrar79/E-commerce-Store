@@ -43,6 +43,7 @@ export default function Statistics() {
             <div
               className={`${
                 item.alt === "Sales" ? "bg-white" : "bg-black"
+                
               } rounded-full w-[60px] h-[60px] flex items-center justify-center`}
             >
               <img src={item.src} alt={item.alt} className="w-[40px]" />

@@ -61,7 +61,7 @@ export default function About() {
       <span className="font-semibold text-black">About</span>
     </nav>      */}
       <div className="flex flex-col">
-        <div className="bg-white py-16 relative">
+        <div className="bg-white  relative">
           {/* Main Container */}
           <div className=" ml-auto md:justify-between flex flex-col gap-10 lg:gap-20 lg:flex-row items-center lg:-space-x-20">
             {/* Left Side: Text Content */}
