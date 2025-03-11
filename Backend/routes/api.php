@@ -9,6 +9,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\Auth\GoogleController;
+use Illuminate\Support\Facades\App;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -38,5 +39,14 @@ Route::prefix('vendor')->group(function (){
 Route::get('/payment-cancel', [StripePaymentController::class, 'paymentCancel'])->name('payment.cancel');
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+
+Route::get('/translations/{locale}', function ($locale) {
+    App::setLocale($locale);
+    return response()->json([
+        'translations' => trans('messages')
+    ]);
+});
+
 
 
