@@ -20,6 +20,8 @@
   import "swiper/css";
   import "swiper/css/navigation";
   import "swiper/css/pagination";
+  import { Link } from "react-router-dom";
+
   // import { Link } from "react-router-dom";
   import { useState } from "react";
   import Statistics from "../Components/Statistics.jsx";
@@ -52,35 +54,33 @@
         <SearchBar />
 
         {/* Main Container */}
-
-        {/* <nav className="flex items-center space-x-2 text-gray-500 text-sm">
-        <Link to="/src/Pages/About.jsx" className="hover:text-gray-700">
-          Home
-        </Link>
-        <span className="text-gray-400">/</span>
-        <span className="font-semibold text-black">About</span>
-      </nav>      */}
+        <div className="p-10 ml-20">
+       <nav className="text-gray-500">
+        <Link to="/">Home</Link> / <span className="text-black">About</span>
+      </nav>
+      </div>
         <div className="flex flex-col">
-          <div className="bg-white py-16 relative">
+     
+          <div className="bg-white  relative">
             {/* Main Container */}
-            <div className=" ml-auto md:justify-between flex lg:p-10 flex-col gap-10 lg:gap-20 lg:flex-row items-center lg:-space-x-20">
+            <div className=" ml-auto md:justify-between flex  flex-col gap-10 lg:gap-20 lg:flex-row items-center lg:-space-x-20">
               {/* Left Side: Text Content */}
-              <div className="flex flex-col gap-4 mx-auto w-[80%] lg:w-[525px]">
+              <div className="flex flex-col gap-5 mx-auto w-[80%] lg:w-[525px]">
                 <h2 className="text-5xl font-semibold text-gray-900 mb-6">
                   Our Story
                 </h2>
-                <p className=" text-gray-600 leading-relaxed font-Poppins text-[17px] font-normal">
+                <p className=" text-gray-600 leading-relaxed font-Poppins text-[15.81px] font-normal sm:text-justify">
                   Launched in 2015, Exclusive is South Asia’s premier online
                   shopping marketplace with an active presence in Bangladesh.
                   Supported by a wide range of tailored marketing, data, and
                   service solutions, Exclusive has 10,500 sellers and 300 brands
-                  and serves 3 million customers across the region.
+                  and serves 3 
+                  <br></br>million customers across the region.
                 </p>
-                <p className="text-gray-600 leading-relaxed font-Poppins text-[17px] font-normal">
+                <p className="text-gray-600 leading-relaxed font-Poppins text-[15.8px] font-normal sm:text-justify">
                   Exclusive has more than 1 million products to offer, growing at
                   a very fast rate. Exclusive offers a diverse assortment in
-                  categories ranging from consumer electronics to fashion and home
-                  appliances.
+                  categories ranging from consumer.
                 </p>
               </div>
 
@@ -114,7 +114,7 @@
                   768: { slidesPerView: 2 },
                   1024: { slidesPerView: 3 },
                 }}
-                className="px-6 lg:flex lg:justify-between lg:w-[1170px] lg:gap-9"
+                className="px-6 lg:flex lg:justify-between lg:gap-9"
               >
                 {teamMembers.map((member, index) => (
                   <SwiperSlide key={index} className="lg:flex lg:justify-between w-[370px]">
