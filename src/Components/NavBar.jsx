@@ -64,8 +64,8 @@ export default function NavBar() {
                     </button>
 
                     <div className="hidden md:flex md:items-center md:mx-auto md:space-x-5 lg:flex lg:items-center lg:mr-auto lg:space-x-10">
-                        <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.home}</a>
-                        <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.about}</a>
+                        <a href="/" className="text-base font-medium text-black hover:text-blue-600">{translations.home}</a>
+                        <a href="/about" className="text-base font-medium text-black hover:text-blue-600">{translations.about}</a>
                         <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.services}</a>
                         <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.contact}</a>
                     </div>
