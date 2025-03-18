@@ -11,22 +11,29 @@ class SanctumCookieAuth
 {
     public function handle(Request $request, Closure $next)
     {
+        // ✅ Get token from the cookie
         $token = $request->cookie('sanctum_token');
 
-        \Log::info('Vendor ID from cookie:', ['vendor_id' => $token]);
-
+        // ✅ Check if token exists
         if (!$token) {
             return response()->json(['error' => 'Token not found'], 401);
         }
 
+        // ✅ Retrieve access token from database
         $accessToken = PersonalAccessToken::findToken($token);
 
+        // ✅ Validate token and associated user
         if (!$accessToken || !$accessToken->tokenable) {
-            return response()->json(['error' => 'Invalid token'], 401);
+            return response()->json([
+                'error' => 'Invalid token',
+                'token' => $token, // Show token for debugging (Remove in production)
+            ], 401);
         }
 
+        // ✅ Authenticate user
         Auth::guard('vendors')->setUser($accessToken->tokenable);
 
+        // ✅ Attach vendor ID to request for easy access
         $request->merge(['vendor_id' => $accessToken->tokenable->id]);
 
         return $next($request);

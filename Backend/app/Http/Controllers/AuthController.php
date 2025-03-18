@@ -16,48 +16,62 @@ class AuthController extends Controller
         $this->middleware('auth:sanctum')->except(['login','register']);
     }
 
-public function login(Request $request)
-{
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-        'is_vendor' => 'required|boolean',
-        'remember_me' => 'boolean'
-    ]);
-
-    $model = $request->is_vendor ? Vendor::class : Buyer::class;
-    $user = $model::where('email', $request->email)->first();
-
-    if (!$user || !Hash::check($request->password, $user->password)) {
-        return response()->json(['message' => 'Invalid credentials'], 401);
-    }
-
-    // ✅ Remove old tokens
-    $user->tokens()->delete();  
-
-    // ✅ Set token expiration based on Remember Me
-    $expiration = $request->remember_me ? now()->addDays(30) : now()->addHours(1);
-    $token = $user->createToken('auth_token', ['*'], $expiration)->plainTextToken;
-
-    // ✅ Set Secure HttpOnly Cookie (Optional)
-    $cookie = cookie('sanctum_token', $token, $request->remember_me ? 60 * 24 * 30 : 60, '/', null, true, true, false, 'Strict');
-
-    return response()->json([
-        'message' => 'Login successful',
-        'user' => $user,
-        'token' => $token,
-    ])->cookie(
-        'vendor_id',   // ✅ Store vendor ID
-        $user->id,     
-        60 * 24 * 30,  // ✅ Expiration: 30 days
-        '/', 
-        null, 
-        true,  // Secure
-        true,  // HttpOnly
-        false, // Raw
-        'Strict' // SameSite policy
-    );        
-}
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'is_vendor' => 'required|boolean',
+            'remember_me' => 'boolean'
+        ]);
+    
+        // ✅ Determine model (Vendor or Buyer)
+        $model = $request->is_vendor ? Vendor::class : Buyer::class;
+        $user = $model::where('email', $request->email)->first();
+    
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+    
+        // ✅ Remove old tokens
+        $user->tokens()->delete();
+    
+        // ✅ Set token expiration based on "Remember Me"
+        $expiration = $request->remember_me ? now()->addDays(30) : now()->addHours(1);
+        $token = $user->createToken('auth_token', ['*'], $expiration)->plainTextToken;
+    
+        // ✅ Set Secure HttpOnly Cookie for token (Optional)
+        $tokenCookie = cookie(
+            'sanctum_token', 
+            $token, 
+            $request->remember_me ? 60 * 24 * 30 : 60, // 30 days or 1 hour
+            '/', 
+            null, 
+            true,  // Secure (set false for local testing)
+            true,  // HttpOnly
+            false, // Raw
+            'Strict'
+        );
+    
+        // ✅ Store Vendor ID in a separate cookie
+        $vendorIdCookie = cookie(
+            'vendor_id', 
+            $user->id, 
+            60 * 24 * 30,  // 30 days expiration
+            '/', 
+            null, 
+            true,  // Secure (set false for local)
+            true,  // HttpOnly
+            false, 
+            'Strict'
+        );
+    
+        return response()->json([
+            'message' => 'Login successful',
+            'user' => $user,
+            'token' => $token,
+        ])->cookie($tokenCookie)->cookie($vendorIdCookie);
+    }    
 
     public function register(Request $request)
     {

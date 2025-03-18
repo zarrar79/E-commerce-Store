@@ -12,56 +12,61 @@ use App\Models\Product;
 
 class VendorController extends Controller
 {
-    public function dashboard(Request $request) {
-        // ✅ Retrieve vendor ID from cookie
-        $vendorId = $request->cookie('vendor_id');
-    
-        if (!$vendorId) {
-            return response()->json(['message' => 'Unauthorized',
-             'vendorId' => $vendorId
-        ], 401);
-        }
-    
-        // ✅ Find vendor and load products
-        $vendor = Vendor::with('products')->find($vendorId);
-    
-        if (!$vendor) {
-            return response()->json(['message' => 'Vendor not found'], 404);
-        }
-    
-        $totalSales = 0;
-        $totalProfit = 0;
-        $productSales = [];
-    
-        foreach ($vendor->products as $product) {
-            // ✅ Ensure total_sales is numeric
-            $salesCount = is_numeric($product->total_sales) ? $product->total_sales : 0;
-            $productSales[$product->id] = $salesCount;
-    
-            // ✅ Calculate total sales
-            $totalSales += $salesCount * $product->price;
-    
-            // ✅ Calculate total profit (avoid null cost_price)
-            $costPrice = $product->cost_price ?? 0;
-            $profit = $salesCount * ($product->price - $costPrice);
-            $totalProfit += $profit;
-        }
-    
-        // ✅ Sort top-selling products
-        arsort($productSales);
-        $topSellingProducts = collect($vendor->products)
-            ->filter(fn($product) => isset($productSales[$product->id]))
-            ->sortByDesc(fn($product) => $productSales[$product->id])
-            ->take(5)
-            ->values();
-    
+    public function dashboard(Request $request)
+{
+    // ✅ Retrieve vendor ID from the cookie
+    $vendorId = $request->cookie('vendor_id');
+
+    if (!$vendorId) {
         return response()->json([
-            'total_sales' => $totalSales,
-            'total_profit' => $totalProfit,
-            'top_selling_products' => $topSellingProducts,
-            'productSales' => $productSales,
-        ]);
+            'message' => 'Unauthorized - Vendor ID missing',
+            'cookie' => $request->cookies->all(), // Debugging: Show all cookies
+        ], 401);
     }
+
+    // ✅ Fetch vendor with products
+    $vendor = Vendor::with('products')->find($vendorId);
+
+    if (!$vendor) {
+        return response()->json([
+            'message' => 'Vendor not found',
+        ], 404);
+    }
+
+    // ✅ Initialize totals
+    $totalSales = 0;
+    $totalProfit = 0;
+    $productSales = [];
+
+    // ✅ Calculate sales and profits
+    foreach ($vendor->products as $product) {
+        $salesCount = max(0, (int) $product->total_sales); // Ensure non-negative integer
+        $costPrice = $product->cost_price ?? 0; // Avoid null values
+
+        // Store product sales count
+        $productSales[$product->id] = $salesCount;
+
+        // Accumulate total sales and profit
+        $totalSales += $salesCount * $product->price;
+        $totalProfit += $salesCount * ($product->price - $costPrice);
+    }
+
+    // ✅ Sort top-selling products
+    arsort($productSales);
+    $topSellingProducts = collect($vendor->products)
+        ->filter(fn($product) => isset($productSales[$product->id]))
+        ->sortByDesc(fn($product) => $productSales[$product->id])
+        ->take(5)
+        ->values();
+
+    return response()->json([
+        'total_sales' => $totalSales,
+        'total_profit' => $totalProfit,
+        'top_selling_products' => $topSellingProducts,
+        'productSales' => $productSales,
+    ]);
+}
+
     
 
 public function addProduct(Request $request)
