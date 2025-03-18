@@ -16,7 +16,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::prefix('vendor')->group(function (){
-    Route::middleware(['vendor.auth'])->group(function () {
+    Route::middleware(['vendor.auth', 'sanctum.cookie.auth'])->group(function () {
         Route::post('/', [VendorController::class, 'show']);
         Route::post('/addProduct', [VendorController::class, 'addProduct']);
         Route::post('/deleteProduct/{id}', [VendorController::class, 'deleteProduct']);
@@ -24,6 +24,7 @@ Route::prefix('vendor')->group(function (){
         Route::put('/updateProduct/{id}', [VendorController::class, 'updateProduct']);
         Route::get('/dashboard', [VendorController::class, 'dashboard']);
     });
+    
 });
 
     Route::middleware(['vendor.auth'])->group(function () {

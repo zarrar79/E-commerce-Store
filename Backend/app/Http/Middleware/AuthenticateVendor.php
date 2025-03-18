@@ -11,7 +11,9 @@ class AuthenticateVendor
     public function handle(Request $request, Closure $next)
 
     {
-        if (!auth('sanctum')->check()){
+        $token = $request->cookie('sanctum_token');
+
+        if (!auth('sanctum')->check() && !$token){
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized access. Please log in.',

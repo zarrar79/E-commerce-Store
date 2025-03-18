@@ -16,35 +16,48 @@ class AuthController extends Controller
         $this->middleware('auth:sanctum')->except(['login','register']);
     }
 
-    public function login(Request $request)
-    {
-        if (auth('sanctum')->user()) {
-            return response()->json(['message' => 'Already logged in'], 200);
-        }
+public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+        'is_vendor' => 'required|boolean',
+        'remember_me' => 'boolean'
+    ]);
 
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-            'is_vendor' => 'required|boolean'
-        ]);
+    $model = $request->is_vendor ? Vendor::class : Buyer::class;
+    $user = $model::where('email', $request->email)->first();
 
-        $model = $request->is_vendor ? Vendor::class : Buyer::class;
-        $user = $model::where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
-        }
-
-        $user->tokens()->delete();  // Remove old tokens
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'message' => 'Login successful',
-            'user' => $user,
-            'token' => $token,
-        ], 200);
+    if (!$user || !Hash::check($request->password, $user->password)) {
+        return response()->json(['message' => 'Invalid credentials'], 401);
     }
+
+    // ✅ Remove old tokens
+    $user->tokens()->delete();  
+
+    // ✅ Set token expiration based on Remember Me
+    $expiration = $request->remember_me ? now()->addDays(30) : now()->addHours(1);
+    $token = $user->createToken('auth_token', ['*'], $expiration)->plainTextToken;
+
+    // ✅ Set Secure HttpOnly Cookie (Optional)
+    $cookie = cookie('sanctum_token', $token, $request->remember_me ? 60 * 24 * 30 : 60, '/', null, true, true, false, 'Strict');
+
+    return response()->json([
+        'message' => 'Login successful',
+        'user' => $user,
+        'token' => $token,
+    ])->cookie(
+        'vendor_id',   // ✅ Store vendor ID
+        $user->id,     
+        60 * 24 * 30,  // ✅ Expiration: 30 days
+        '/', 
+        null, 
+        true,  // Secure
+        true,  // HttpOnly
+        false, // Raw
+        'Strict' // SameSite policy
+    );        
+}
 
     public function register(Request $request)
     {
@@ -79,10 +92,14 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        $vendor = Auth::guard('vendors')->user();
         if (!$request->user()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        $request->user()->currentAccessToken()->delete();
+        if ($vendor) {
+            $vendor->tokens()->delete(); // Revoke all tokens
+            $request->user()->currentAccessToken()->delete();
+        }
 
         return response()->json([
             'success' => true,

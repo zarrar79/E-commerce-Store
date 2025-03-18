@@ -13,7 +13,17 @@ use App\Models\Product;
 class VendorController extends Controller
 {
     public function dashboard(Request $request) {
-        $vendor = Vendor::with(['products'])->find($request->user->id);
+        // ✅ Retrieve vendor ID from cookie
+        $vendorId = $request->cookie('vendor_id');
+    
+        if (!$vendorId) {
+            return response()->json(['message' => 'Unauthorized',
+             'vendorId' => $vendorId
+        ], 401);
+        }
+    
+        // ✅ Find vendor and load products
+        $vendor = Vendor::with('products')->find($vendorId);
     
         if (!$vendor) {
             return response()->json(['message' => 'Vendor not found'], 404);
@@ -24,21 +34,21 @@ class VendorController extends Controller
         $productSales = [];
     
         foreach ($vendor->products as $product) {
-            // Get total quantity sold for this product
-            $salesCount = $product->total_sales;
+            // ✅ Ensure total_sales is numeric
+            $salesCount = is_numeric($product->total_sales) ? $product->total_sales : 0;
             $productSales[$product->id] = $salesCount;
     
-            // Calculate total sales
+            // ✅ Calculate total sales
             $totalSales += $salesCount * $product->price;
     
-            // Calculate total profit (assuming cost_price exists)
-            $profit = $salesCount * ($product->price - $product->cost_price);
+            // ✅ Calculate total profit (avoid null cost_price)
+            $costPrice = $product->cost_price ?? 0;
+            $profit = $salesCount * ($product->price - $costPrice);
             $totalProfit += $profit;
         }
-
-        arsort($productSales);
     
-        // Get top 5 selling products
+        // ✅ Sort top-selling products
+        arsort($productSales);
         $topSellingProducts = collect($vendor->products)
             ->filter(fn($product) => isset($productSales[$product->id]))
             ->sortByDesc(fn($product) => $productSales[$product->id])
@@ -52,6 +62,7 @@ class VendorController extends Controller
             'productSales' => $productSales,
         ]);
     }
+    
 
 public function addProduct(Request $request)
 {
