@@ -67,7 +67,7 @@ export default function NavBar() {
                         <a href="/" className="text-base font-medium text-black hover:text-blue-600">{translations.home}</a>
                         <a href="/about" className="text-base font-medium text-black hover:text-blue-600">{translations.about}</a>
                         <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.services}</a>
-                        <a href="#" className="text-base font-medium text-black hover:text-blue-600">{translations.contact}</a>
+                        <a href="/contact" className="text-base font-medium text-black hover:text-blue-600">{translations.contact}</a>
                     </div>
 
                     <div className="hidden ml-0 lg:ml-10 md:flex md:items-center md:w-[270px] lg:w-[350px]">
