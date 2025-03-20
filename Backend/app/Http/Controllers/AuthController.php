@@ -40,38 +40,19 @@ class AuthController extends Controller
         $expiration = $request->remember_me ? now()->addDays(30) : now()->addHours(1);
         $token = $user->createToken('auth_token', ['*'], $expiration)->plainTextToken;
     
-        // ✅ Set Secure HttpOnly Cookie for token (Optional)
-        $tokenCookie = cookie(
-            'sanctum_token', 
-            $token, 
-            $request->remember_me ? 60 * 24 * 30 : 60, // 30 days or 1 hour
-            '/', 
-            null, 
-            true,  // Secure (set false for local testing)
-            true,  // HttpOnly
-            false, // Raw
-            'Strict'
-        );
-    
-        // ✅ Store Vendor ID in a separate cookie
-        $vendorIdCookie = cookie(
-            'vendor_id', 
-            $user->id, 
-            60 * 24 * 30,  // 30 days expiration
-            '/', 
-            null, 
-            true,  // Secure (set false for local)
-            true,  // HttpOnly
-            false, 
-            'Strict'
-        );
-    
-        return response()->json([
-            'message' => 'Login successful',
-            'user' => $user,
-            'token' => $token,
-        ])->cookie($tokenCookie)->cookie($vendorIdCookie);
-    }    
+        // ✅ Create an array of cookies
+$cookies = [
+    cookie('sanctum_token', $token, $request->remember_me ? 60 * 24 * 30 : 60, '/', null, true, true, false, 'Strict'),
+    cookie('vendor_id', $user->id, 60 * 24 * 30, '/', null, true, true, false, 'Strict')
+];
+
+// ✅ Return response with multiple cookies
+return response()->json([
+    'message' => 'Login successful',
+    'user' => $user,
+    'token' => $token,
+])->withCookies($cookies);
+    }   
 
     public function register(Request $request)
     {

@@ -14,7 +14,7 @@ class VendorController extends Controller
 {
     public function dashboard(Request $request)
 {
-    // ✅ Retrieve vendor ID from the cookie
+
     $vendorId = $request->cookie('vendor_id');
 
     if (!$vendorId) {
