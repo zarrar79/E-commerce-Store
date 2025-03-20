@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\App;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/login', function(Request $request){
+
+    return response()->json(['cookie' => $request->cookie]);
+})->name('login');
 Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::prefix('vendor')->group(function (){

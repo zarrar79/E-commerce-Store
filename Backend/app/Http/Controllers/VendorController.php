@@ -14,19 +14,24 @@ class VendorController extends Controller
 {
     public function dashboard(Request $request)
 {
+    // ✅ First, try to get the authenticated vendor from the token
+    $vendor = $request->user;
 
-    $vendorId = $request->cookie('vendor_id');
-
-    if (!$vendorId) {
-        return response()->json([
-            'message' => 'Unauthorized - Vendor ID missing',
-            'cookie' => $request->cookies->all(), // Debugging: Show all cookies
-        ], 401);
+    // ✅ If no token-based authentication, fall back to the cookie method
+    if (!$vendor) {
+        $vendorId = $request->cookie('vendor_id');
+        if (!$vendorId) {
+            return response()->json([
+                'message' => 'Unauthorized',
+                'cookies' => $request->cookies->all(), // Debugging
+            ], 401);
+        }
+        
+        // ✅ Fetch vendor using the vendor_id from the cookie
+        $vendor = Vendor::with('products')->find($vendorId);
     }
 
-    // ✅ Fetch vendor with products
-    $vendor = Vendor::with('products')->find($vendorId);
-
+    // ✅ Ensure the vendor exists
     if (!$vendor) {
         return response()->json([
             'message' => 'Vendor not found',
@@ -40,13 +45,10 @@ class VendorController extends Controller
 
     // ✅ Calculate sales and profits
     foreach ($vendor->products as $product) {
-        $salesCount = max(0, (int) $product->total_sales); // Ensure non-negative integer
-        $costPrice = $product->cost_price ?? 0; // Avoid null values
+        $salesCount = max(0, (int) $product->total_sales);
+        $costPrice = $product->cost_price ?? 0;
 
-        // Store product sales count
         $productSales[$product->id] = $salesCount;
-
-        // Accumulate total sales and profit
         $totalSales += $salesCount * $product->price;
         $totalProfit += $salesCount * ($product->price - $costPrice);
     }
@@ -64,8 +66,10 @@ class VendorController extends Controller
         'total_profit' => $totalProfit,
         'top_selling_products' => $topSellingProducts,
         'productSales' => $productSales,
+        'cookie' => $request->cookie('vendor_id')
     ]);
 }
+
 
     
 
@@ -201,7 +205,4 @@ public function updateProduct(Request $request, $id)
         'product' => $product
     ]);
 }
-
-  
-
 }
