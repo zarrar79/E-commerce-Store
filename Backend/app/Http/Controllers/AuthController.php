@@ -109,13 +109,14 @@ class AuthController extends Controller
     }
     // $user->tokens()->delete();
     //forget the cookie
-    Cookie::forget('vendor_id');
         
     return response()->json([
         'success' => true,
         'message' => 'Logged out successfully!',
-        'cookie' => $request->cookie('vendor_id')
-    ])->withCookie(cookie('cookie_name', '', -1));
+        'cookie' => 'deleted'
+    ])->withCookie(Cookie::forget('vendor_id'));
+    
+    
 }
     
 }
